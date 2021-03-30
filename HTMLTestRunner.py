@@ -22,7 +22,7 @@ HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
     # run the test
     runner.run(my_test_suite)
 ------------------------------------------------------------------------
-Copyright (c) 2004-2007, Wai Yip Tung
+Copyright (c) 2020-2025, Ravikirana B
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -32,7 +32,7 @@ met:
 * Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
-* Neither the name Wai Yip Tung nor the names of its contributors may be
+* Neither the name Ravikirana B nor the names of its contributors may be
   used to endorse or promote products derived from this software without
   specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
@@ -48,29 +48,11 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-# URL: http://tungwaiyip.info/software/HTMLTestRunner.html
 
-__author__ = "Wai Yip Tung"
-__version__ = "0.8.3"
+__author__ = "Ravikirana B"
+__version__ = "0.9.0"
 
-from idna import unicode
 
-"""
-Change History
-Version 0.8.3
-* Prevent crash on class or module-level exceptions (Darren Wurf).
-Version 0.8.2
-* Show output inline instead of popup window (Viorel Lupu).
-Version in 0.8.1
-* Validated XHTML (Wolfgang Borgert).
-* Added description of test classes and test cases.
-Version in 0.8.0
-* Define Template_mixin class for customization.
-* Workaround a IE 6 bug that it does not treat <script> block as CDATA.
-Version in 0.7.1
-* Back port to Python 2.3 (Frank Horowitz).
-* Fix missing scroll bars in detail log (Podi).
-"""
 
 # TODO: color stderr
 # TODO: simplify javascript using ,ore than 1 class in the class attribute?
@@ -93,6 +75,8 @@ from xml.sax import saxutils
 # e.g.
 #   >>> logging.basicConfig(stream=HTMLTestRunner.stdout_redirector)
 #   >>>
+from idna import unicode
+
 
 def to_unicode(s):
     try:
