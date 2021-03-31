@@ -48,22 +48,19 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-
 __author__ = "Ravikirana B"
-__version__ = "0.9.0"
-
-
+__version__ = "1.0.1"
 
 # TODO: color stderr
 # TODO: simplify javascript using ,ore than 1 class in the class attribute?
 
 import datetime
+import os
 from io import StringIO
 import sys
 import time
 import unittest
 from xml.sax import saxutils
-
 
 # ------------------------------------------------------------------------
 # The redirectors below are used to capture output during testing. Output
@@ -75,7 +72,7 @@ from xml.sax import saxutils
 # e.g.
 #   >>> logging.basicConfig(stream=HTMLTestRunner.stdout_redirector)
 #   >>>
-from idna import unicode
+from pyparsing import unicode
 
 
 def to_unicode(s):
@@ -642,12 +639,12 @@ class HTMLTestRunner(Template_mixin):
         if self.stream is not None:
             self.stream.write(output)
         html_report_file_name = f'{self.output}{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html'
+        os.makedirs(os.path.dirname(html_report_file_name), exist_ok=True)
         with open(html_report_file_name, 'w') as file:
             file.write(output)
         if self.open_in_browser:
             import webbrowser
-            import os
-            webbrowser.open_new_tab('file:///'+ os.getcwd()+html_report_file_name)
+            webbrowser.open_new_tab('file:///' + os.getcwd() + html_report_file_name)
 
     def _generate_stylesheet(self):
         return self.STYLESHEET_TMPL
@@ -778,7 +775,7 @@ class TestProgram(unittest.TestProgram):
         unittest.TestProgram.runTests(self)
 
 
-main = TestProgram
+main = TestProgram()
 
 ##############################################################################
 # Executing this module from the command line
