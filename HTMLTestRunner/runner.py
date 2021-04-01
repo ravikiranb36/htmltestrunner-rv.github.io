@@ -1,23 +1,25 @@
 """
-# HTMLTestRunner.io
+# HTMLTestRunner
+
 HTMLTestRunner for python unit test
 
-A TestRunner for use with the Python unit testing framework. It
-generates a HTML report to show the result at a glance.
+A TestRunner for use with the Python unit testing framework. It generates a HTML report to show the result at a glance.
 The simplest way to use this is to invoke its main method. E.g.
 import unittest
-from HTMLTestRunner import HTMLTestRunner
-... define your tests ...
-For more customization options, instantiates a HTMLTestRunner object.
+from HTMLTestRunner.runner import HTMLTestRunner
+... define your tests ... For more customization options, instantiates a HTMLTestRunner object.
 HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
-#Creating suite
+
+# Creating suite
+
 my_test_suite = unittest.TestSuite()
+
 # output to a file
-runner = HTMLTestRunner(
-title='My unit test',
-description='This demonstrates the report output by HTMLTestRunner.'
-)
+
+runner = HTMLTestRunner(title='My unit test', open_in_browser=True)
+
 # run the test
+
 runner.run(my_test_suite)
 ------------------------------------------------------------------------
 Copyright (c) 2020-2025, Ravikirana B
@@ -47,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 __author__ = "Ravikirana B"
-__version__ = "1.0.1"
+__version__ = "1.0.8"
 
 # TODO: color stderr
 # TODO: simplify javascript using ,ore than 1 class in the class attribute?
@@ -336,7 +338,7 @@ a:hover {
 #total_row  { font-weight: bold; }
 .passClass  { background-color: #6c6; }
 .failClass  { background-color: #ffb380; }
-.errorClass { background-color: #c00; }
+.errorClass { background-color: #ffb366; }
 .passCase   { color: #6c6; }
 .failCase   { color: #c60; font-weight: bold; }
 .errorCase  { color: #c00; font-weight: bold; }
@@ -773,7 +775,7 @@ class TestProgram(unittest.TestProgram):
         unittest.TestProgram.runTests(self)
 
 
-main = TestProgram()
+main = TestProgram
 
 ##############################################################################
 # Executing this module from the command line
