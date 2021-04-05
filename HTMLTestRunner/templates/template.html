@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <meta name="generator" content="{{ generator }}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<div class='heading'>
+    <h1 style="margin-left:1ex;">{{ title }}</h1>
+    {% for attribute in report_attrs %}
+    <p class='attribute'><strong>{{ attribute[0] }} : </strong> {{attribute[1]}}</p>
+    {% endfor %}
+</div>
+<div>
+    <p id='show_detail_line'><b>Show</b>
+        <button><a href='javascript:showCase(0)' style="color:#660066;">Summary</a></button>
+        <button><a href='javascript:showCase(1)' style="color:#660066;">Failed</a></button>
+        <button><a href='javascript:showCase(2)' style="color:#660066;">All</a></button>
+    </p>
+    <table id='result_table'>
+        <colgroup>
+            <col align='left'/>
+            <col align='right'/>
+            <col align='right'/>
+            <col align='right'/>
+            <col align='right'/>
+            <col align='right'/>
+        </colgroup>
+        <tr id='header_row'>
+            <td>Test Group/Test case</td>
+            <td>Count</td>
+            <td>Pass</td>
+            <td>Fail</td>
+            <td>Error</td>
+            <td>View</td>
+        </tr>
+        {% for cls in report['class_testcases'] %}
+        <tr class='{{ cls["style"]}}' style="font-weight:bold;color:white;">
+            <td><a href="javascript:showClassDetail('{{ cls['cid']}}','{{ cls['count']}}')">{{ cls['desc'] }}</a></td>
+            <td>{{ cls['count'] }}</td>
+            <td>{{ cls['pass'] }}</td>
+            <td>{{ cls['fail'] }}</td>
+            <td>{{ cls['error'] }}</td>
+            <td>
+                <button><a href="javascript:showClassDetail('{{ cls['cid']}}','{{ cls['count'] }}')"
+                           style="color:#660066;">Detail</a></button>
+            </td>
+        </tr>
+        {% for testcase in cls['fun_testcases'] %}
+        <tr id="{{testcase['tid']}}" class='{{ testcase["class"] }}'>
+            <td class='{{ testcase["style"] }}'>
+                <div class='testcase'>
+                    <a class="popup_link" onfocus='this.blur();'
+                       href="javascript:showTestDetail('div_{{testcase['tid']}}')">{{testcase['desc']}}</a>
+                </div>
+            </td>
+            <td colspan='5' align='center'>
+                <div>
+                    <!--css div popup start-->
+                    <button>
+                        <a class="popup_link" onfocus='this.blur();'
+                           href="javascript:showTestDetail('div_{{testcase['tid']}}')" style="color:#660066;">
+                            {{ testcase['status'] }}
+                        </a></button>
+                    <div id='div_{{ testcase["tid"] }}' class="popup_window">
+                        <div style='text-align: right; color:red;cursor:pointer'>
+                            <a onfocus='this.blur();'
+                               onclick="document.getElementById('div_{{testcase['tid']}}').style.display = 'none'; "
+                               style="color:red;">
+                                [x]</a>
+                        </div>
+                        <pre>{{ testcase['log'] }}</pre>
+                        <pre style="color: red;">{{ testcase['error'] }}</pre>
+                    </div>
+                    <!--css div popup end-->
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+
+        <tr id='total_row'>
+            <td>Total</td>
+            <td>{{report['count']}}</td>
+            <td>{{report['pass']}}</td>
+            <td>{{report['fail']}}</td>
+            <td>{{report['error']}}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</div>
+<br><br>
+<div id='ending'><b>Time Elapsed: </b>{{ stop_time }}</div>
+</body>
+</html>

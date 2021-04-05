@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 setuptools.setup(
     name="HTMLTestRunner-rv",
     author="Ravikirana B",
-    version='1.0.8',
+    version='1.0.11',
     author_email="ravikiranb36@gmail.com",
     description="HTMLTestRunner for unit test framework",
     long_description=long_description,
@@ -14,12 +14,14 @@ setuptools.setup(
     license="MIT",
     packages=["HTMLTestRunner"],
     include_package_data=True,
-    install_requires='pyparsing>=2.4.7',
+    package_data={},
+    install_requires=['pyparsing>=2.4.7', 'jinja2>=2.11'],
+    keywords='HtmlTestRunner TestRunner Html Reports',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-
+    zip_safe=False,
 )
