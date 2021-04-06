@@ -1,26 +1,47 @@
 """
 # HTMLTestRunner
-
+```text
 HTMLTestRunner for python unit test
 
-A TestRunner for use with the Python unit testing framework. It generates a HTML report to show the result at a glance.
-The simplest way to use this is to invoke its main method. E.g.
-import unittest
-from HTMLTestRunner import HTMLTestRunner
-... define your tests ... For more customization options, instantiates a HTMLTestRunner object.
-HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
-
+A TestRunner for use with the Python unit testing framework.
+It generates a HTML report to show the result at a glance.
+```
+#Installation:
+```bash
+pip install HTMLTestRunner-rv
+```
 # Creating suite
-
+```python
 my_test_suite = unittest.TestSuite()
-
+```
 # output to a file
-
-runner = HTMLTestRunner(title='My unit test', open_in_browser=True)
-
+```python
+runner = HTMLTestRunner(
+title='My unit test', open_in_browser=True)
+```
 # run the test
-
+```python
 runner.run(my_test_suite)
+```
+#Example code:
+```python
+import unittest
+from test_print_all_details import TestCasePrintAllDetails
+from test_by_id import TestCaseDetailsById
+from test_details_by_name import TestCaseDetailsByNmae
+from HTMLTestRunner import HTMLTestRunner
+
+def test_suite():
+    test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
+    test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
+    test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
+    suite = unittest.TestSuite([test1,test2,test3])
+    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                                open_in_browser=True, description="HTMLTestReport")
+    runner.run(suite)
+if __name__ == '__main__':
+    test_suite()
+```
 ------------------------------------------------------------------------
 Copyright (c) 2020-2025, Ravikirana B
 All rights reserved.
@@ -49,12 +70,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 __author__ = "Ravikirana B"
-__version__ = "1.0.11"
+__version__ = "1.0.12"
 
-# TODO: color stderr
-# TODO: simplify javascript using ,ore than 1 class in the class attribute?
-
-import datetime
+from datetime import datetime
 import os
 import re
 from io import StringIO
@@ -63,25 +81,19 @@ import time
 import unittest
 import shutil
 from jinja2 import Environment, FileSystemLoader
-# ------------------------------------------------------------------------
-# The redirectors below are used to capture output during testing. Output
-# sent to sys.stdout and sys.stderr are automatically captured. However
-# in some cases sys.stdout is already cached before HTMLTestRunner is
-# invoked (e.g. calling logging.basicConfig). In order to capture those
-# output, use the redirectors for the cached stream.
-#
-# e.g.
-#   >>> logging.basicConfig(stream=HTMLTestRunner.stdout_redirector)
-#   >>>
+
 from pyparsing import unicode
 
 
 def to_unicode(s):
+    """
+    To convert unicode
+    """
     try:
         return unicode(s)
     except UnicodeDecodeError:
         # s is non ascii byte string
-        return s.decode('unicode_escape')
+        return s.decode('utf-8', 'ignore')
 
 
 class OutputRedirector(object):
@@ -91,7 +103,15 @@ class OutputRedirector(object):
         self.fp = fp
 
     def write(self, s):
-        self.fp.write(to_unicode(s))
+        """
+        Write to string buffer with timestamp
+        """
+        string = to_unicode(s)
+        if string == '\n' or string == ' ':
+            pass
+        else:
+            output = str(datetime.now()) + ' : ' + string.replace('\n', '\n' + ' ' * 29) + '\n'
+            self.fp.write(output)
 
     def writelines(self, lines):
         lines = map(to_unicode, lines)
@@ -104,6 +124,7 @@ class OutputRedirector(object):
 stdout_redirector = OutputRedirector(sys.stdout)
 stderr_redirector = OutputRedirector(sys.stderr)
 
+# Test status
 STATUS = {
     0: 'PASS',
     1: 'FAIL',
@@ -111,8 +132,9 @@ STATUS = {
 }
 
 DEFAULT_TITLE = 'Unit Test Report'
-DEFAULT_DESCRIPTION = ''
-pkg_path = os.path.dirname(__file__)
+DEFAULT_DESCRIPTION = 'Test report generation using HTMLTestRunner-rv'
+
+PKG_PATH = os.path.dirname(__file__)
 TestResult = unittest.TestResult
 
 
@@ -120,56 +142,55 @@ class _TestResult(TestResult):
     # note: _TestResult is a pure representation of results.
     # It lacks the output and reporting ability compares to unittest._TextTestResult.
 
-    def __init__(self, verbosity=1):
+    def __init__(self, verbosity=1, log_file=''):
         TestResult.__init__(self)
+        self.log_file = log_file
         self.outputBuffer = StringIO()
-        self.stdout0 = None
-        self.stderr0 = None
         self.success_count = 0
         self.failure_count = 0
         self.error_count = 0
         self.verbosity = verbosity
-
-        # result is a list of result in 4 tuple
-        # (
-        #   result code (0: success; 1: fail; 2: error),
-        #   TestCase object,
-        #   Test output (byte string),
-        #   stack trace,
-        # )
         self.result = []
 
     def startTest(self, test):
+        """
+        Start test inherited by unittest TestResult
+        """
         TestResult.startTest(self, test)
         # just one buffer for both stdout and stderr
         stdout_redirector.fp = self.outputBuffer
         stderr_redirector.fp = self.outputBuffer
-        self.stdout0 = sys.stdout
-        self.stderr0 = sys.stderr
         sys.stdout = stdout_redirector
         sys.stderr = stderr_redirector
 
     def complete_output(self):
         """
         Disconnect output redirection and return buffer.
-        Safe to call multiple times.
+        writes buffer data to log file if self.log_file is True
         """
-        if self.stdout0:
-            sys.stdout = self.stdout0
-            sys.stderr = self.stderr0
-            self.stdout0 = None
-            self.stderr0 = None
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
         output = self.outputBuffer.getvalue()
+        self.outputBuffer.seek(0)
         self.outputBuffer.truncate(0)
+        # Writing buffer data to log file
+        if self.log_file:
+            with open(self.log_file, 'a') as f:
+                f.write(output)
         return output
 
     def stopTest(self, test):
-        # Usually one of addSuccess, addError or addFailure would have been called.
-        # But there are some path in unittest that would bypass this.
-        # We must disconnect stdout in stopTest(), which is guaranteed to be called.
+        """
+        Usually one of addSuccess, addError or addFailure would have been called.
+        But there are some path in unittest that would bypass this.
+        We must disconnect stdout in stopTest(), which is guaranteed to be called.
+        """
         self.complete_output()
 
     def addSuccess(self, test):
+        """
+        It calls if the test passes and writes P in stdout
+        """
         self.success_count += 1
         TestResult.addSuccess(self, test)
         output = self.complete_output()
@@ -179,22 +200,28 @@ class _TestResult(TestResult):
             sys.stderr.write(str(test))
             sys.stderr.write('\n')
         else:
-            sys.stderr.write('')
+            sys.stdout.write('P')
 
     def addError(self, test, err):
+        """
+        It calls if the test fails and writes E in stderr
+        """
         self.error_count += 1
         TestResult.addError(self, test, err)
         _, _exc_str = self.errors[-1]
         output = self.complete_output()
         self.result.append((2, test, output, _exc_str))
         if self.verbosity > 1:
-            sys.stderr.write('E  ')
+            sys.stderr.write('E')
             sys.stderr.write(str(test))
             sys.stderr.write('\n')
         else:
             sys.stderr.write('E')
 
     def addFailure(self, test, err):
+        """
+        It calls if gets error and writes E in stderr
+        """
         self.failure_count += 1
         TestResult.addFailure(self, test, err)
         _, _exc_str = self.failures[-1]
@@ -209,17 +236,29 @@ class _TestResult(TestResult):
 
 
 class HTMLTestRunner:
-    """
-    """
+    """HTMLTestRunner class"""
 
-    def __init__(self, stream=None, output=None, verbosity=1, title=None, description=None, report_name='report',
+    def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, report_name='report',
                  open_in_browser=False):
-        self.stream = stream
+        """
+        @param log: bool If it is True start logs to txt file with timestamp
+        @param verbosity: If it's more than 1 it logs with more details
+        @param output: Report directory
+        @param title:Report title
+        @param description:Test report descriptin
+        @param report_name:report name starts with
+        @param open_in_browser:bool If it is True opens report automatically in browser
+        """
         self.report_name = report_name
         self.output = output
-        self.open_in_browser = open_in_browser
         if self.output is None:
-            self.output = './reports/'
+            self.output = 'reports'
+        self.open_in_browser = open_in_browser
+        self.html_report_file_name = f'./{self.output}/{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html'
+        os.makedirs(os.path.dirname(self.html_report_file_name), exist_ok=True)
+        self.log_file = ''
+        if log:
+            self.log_file = f'./{self.output}/{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}_log.txt'
         self.verbosity = verbosity
         if title is None:
             self.title = DEFAULT_TITLE
@@ -230,13 +269,13 @@ class HTMLTestRunner:
         else:
             self.description = description
 
-        self.startTime = datetime.datetime.now()
+        self.startTime = datetime.now()
 
     def run(self, test):
         "Run the given test case or test suite."
-        result = _TestResult(self.verbosity)
+        result = _TestResult(self.verbosity, self.log_file)
         test(result)
-        self.stopTime = datetime.datetime.now()
+        self.stopTime = datetime.now()
         self.generateReport(result)
         return result
 
@@ -273,14 +312,20 @@ class HTMLTestRunner:
             ('Start Time', startTime),
             ('Duration', duration),
             ('Status', status),
+            ('Descrition', self.description)
         ]
 
     def generateReport(self, result):
-
+        """
+        It geneartes HTML report by using unittest report
+        @param result:unittest result
+        After generates html report it opens report in browser if open_in_broser is True
+        It adds stylesheet and script files in reports directory
+        """
         report_attrs = self.getReportAttributes(result)
         generator = 'HTMLTestRunner %s' % __version__
         report = self._generate_report(result)
-        env = Environment(loader=FileSystemLoader(os.path.join(pkg_path,'templates')))
+        env = Environment(loader=FileSystemLoader(os.path.join(PKG_PATH, 'templates')))
         template = env.get_template('template.html')
         output = template.render(
             generator=generator,
@@ -289,19 +334,17 @@ class HTMLTestRunner:
             report=report,
             stop_time=(self.stopTime - self.startTime),
         )
-        if self.stream is not None:
-            self.stream.write(output)
-        html_report_file_name = f'{self.output}{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html'
-        os.makedirs(os.path.dirname(html_report_file_name), exist_ok=True)
-        shutil.copy(os.path.join(pkg_path,'static','stylesheet.css'), f'{self.output}stylesheet.css')
-        shutil.copy(os.path.join(pkg_path,'static','script.js'), f'{self.output}script.js')
-        with open(html_report_file_name, 'w') as file:
+
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), f'./{self.output}/stylesheet.css')
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'script.js'), f'./{self.output}/script.js')
+        with open(self.html_report_file_name, 'w') as file:
             file.write(output)
         if self.open_in_browser:
             import webbrowser
-            webbrowser.open_new_tab('file:///' + os.getcwd() + html_report_file_name)
+            webbrowser.open_new_tab('file:///' + os.getcwd() + self.html_report_file_name)
 
     def _generate_report(self, result):
+        '''It generates the report'''
         class_testcases = []
         sortedResult = self.sortResult(result.result)
         for cid, (cls, cls_results) in enumerate(sortedResult):
@@ -326,7 +369,7 @@ class HTMLTestRunner:
             fun_testcases = []
             for tid, (n, t, o, e) in enumerate(cls_results):
                 self._generate_report_test(fun_testcases, cid, tid, n, t, o, e)
-            d_row = {
+            cls_testcase = {
                 'style': ne > 0 and 'errorClass' or nf > 0 and 'failClass' or 'passClass',
                 'desc': desc,
                 'count': np + nf + ne,
@@ -336,7 +379,7 @@ class HTMLTestRunner:
                 'cid': 'c%s' % (cid + 1),
                 'fun_testcases': fun_testcases,
             }
-            class_testcases.append(d_row)
+            class_testcases.append(cls_testcase)
         report = {
             'class_testcases': class_testcases,
             'count': str(result.success_count + result.failure_count + result.error_count),
@@ -347,8 +390,13 @@ class HTMLTestRunner:
         return report
 
     def _generate_report_test(self, fun_testcases, cid, tid, n, t, o, e):
+        """
+        It generates report for each testcase functions
+        """
         # e.g. 'pt1.1', 'ft1.1', etc
         has_output = bool(o or e)
+        if not has_output:
+            return
         tid = (n == 0 and 'p' or 'f') + 't%s.%s' % (cid + 1, tid + 1)
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
@@ -356,15 +404,11 @@ class HTMLTestRunner:
 
         # o and e should be byte string because they are collected from stdout and stderr?
         if not isinstance(o, str):
-            # TODO: some problem with 'string_escape': it escape \n and mess up formating
-            # uo = unicode(o.encode('string_escape'))
-            uo = o.decode('latin-1')
+            uo = o.decode('utf-8', 'ignore')
         else:
             uo = o
         if not isinstance(e, str):
-            # TODO: some problem with 'string_escape': it escape \n and mess up formating
-            # ue = unicode(e.encode('string_escape'))
-            ue = e.decode('latin-1')
+            ue = e.decode('utf-8', 'ignore')
         else:
             ue = e
 
@@ -380,37 +424,3 @@ class HTMLTestRunner:
             'status': STATUS[n],
         }
         fun_testcases.append(testcase)
-        if not has_output:
-            return
-
-
-##############################################################################
-# Facilities for running tests from the command line
-##############################################################################
-
-# Note: Reuse unittest.TestProgram to launch test. In the future we may
-# build our own launcher to support more specific command line
-# parameters like test title, CSS, etc.
-class TestProgram(unittest.TestProgram):
-    """
-    A variation of the unittest.TestProgram. Please refer to the base
-    class for command line parameters.
-    """
-
-    def runTests(self):
-        # Pick HTMLTestRunner as the default test runner.
-        # base class's testRunner parameter is not useful because it means
-        # we have to instantiate HTMLTestRunner before we know self.verbosity.
-        if self.testRunner is None:
-            self.testRunner = HTMLTestRunner(verbosity=self.verbosity)
-        unittest.TestProgram.runTests(self)
-
-
-main = TestProgram
-
-##############################################################################
-# Executing this module from the command line
-##############################################################################
-
-if __name__ == "__main__":
-    main(module=None)

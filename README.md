@@ -2,10 +2,8 @@
 ```text
 HTMLTestRunner for python unit test
 
-A TestRunner for use with the Python unit testing framework. It generates a HTML report to show the result at a glance.
-The simplest way to use this is to invoke its main method. E.g. import unittest from HTMLTestRunner.runner import
-HTMLTestRunner ... define your tests ... For more customization options, instantiates a HTMLTestRunner object.
-HTMLTestRunner is a counterpart to unittest's TextTestRunner. E.g.
+A TestRunner for use with the Python unit testing framework. 
+It generates a HTML report to show the result at a glance.
 ```
 #Installation:
 ```bash
@@ -37,7 +35,8 @@ test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
 test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
 test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
 suite = unittest.TestSuite([test1,test2,test3])
-runner = HTMLTestRunner(title="Test Report", open_in_browser=True)
+runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                        open_in_browser=True, description="HTMLTestReport")
 runner.run(suite)
 if __name__ == '__main__':
 test_suite()
