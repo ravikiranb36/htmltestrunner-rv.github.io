@@ -7,6 +7,7 @@ It generates a HTML report to show the result at a glance.
 It logs stdout to *.txt file with timestamp
 Easy to find bugs
 ```
+#[<span style="color: grey;"> Click here for HTMLTestRunner-rv documentation</span>](https://ravikiranb36.github.io/htmltestrunner-rv.github.io/)
 
 #Installation:
 ```bash
