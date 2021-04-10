@@ -1,76 +1,48 @@
-"""
-# HTMLTestRunner
-```text
-HTMLTestRunner for python unit test
+# -*- coding: utf-8 -*-
+# module runner.py
+#
+# Copyright (c) 2021-2030  Ravikirana B
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+__doc__ = \
+    """
+    HTMLTestRunner-rv module to generate HTML report for your testcase
+    ==================================================================
+    
+    The HTMLTestRunner provides easy way to generate HTML Test Reports.
+    Easy to find errors and reduce the debug time.
+    You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp.
+    So it is easy to debug whenever you want.
+    
+    *   It automatically opens report in your browser so no need to search report file in your directory.
+        Just you need to pass `open_in_browser = True`.
+    
+    *   Color of Testcase block automatically change as per test result.
+                    
+    
+    """
 
-A TestRunner for use with the Python unit testing framework.
-It generates a HTML report to show the result at a glance.
-```
-#Installation:
-```bash
-pip install HTMLTestRunner-rv
-```
-# Creating suite
-```python
-my_test_suite = unittest.TestSuite()
-```
-# output to a file
-```python
-runner = HTMLTestRunner(
-title='My unit test', open_in_browser=True)
-```
-# run the test
-```python
-runner.run(my_test_suite)
-```
-#Example code:
-```python
-import unittest
-from test_print_all_details import TestCasePrintAllDetails
-from test_by_id import TestCaseDetailsById
-from test_details_by_name import TestCaseDetailsByNmae
-from HTMLTestRunner import HTMLTestRunner
-
-def test_suite():
-    test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
-    test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
-    test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
-    suite = unittest.TestSuite([test1,test2,test3])
-    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                                open_in_browser=True, description="HTMLTestReport")
-    runner.run(suite)
-if __name__ == '__main__':
-    test_suite()
-```
-------------------------------------------------------------------------
-Copyright (c) 2020-2025, Ravikirana B
-All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-* Redistributions of source code must retain the above copyright notice,
-  this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the
-  documentation and/or other materials provided with the distribution.
-* Neither the name Ravikirana B nor the names of its contributors may be
-  used to endorse or promote products derived from this software without
-  specific prior written permission.
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
-IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
-OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
-
-__author__ = "Ravikirana B"
-__version__ = "1.0.12"
+__author__ = "Ravikirana B ravikiranb36@gmail.com"
+__version__ = "1.0.13"
+__all__ = ['HTMLTestRunner']
 
 from datetime import datetime
 import os
@@ -87,7 +59,12 @@ from pyparsing import unicode
 
 def to_unicode(s):
     """
-    To convert unicode
+    It strings to unicode
+    Args:
+        s (str): String to convert to unicode
+
+    Returns:
+        It returns unicode
     """
     try:
         return unicode(s)
@@ -97,14 +74,24 @@ def to_unicode(s):
 
 
 class OutputRedirector(object):
-    """ Wrapper to redirect stdout or stderr """
+    """Wrapper to redirect stdout or stderr"""
 
     def __init__(self, fp):
+        """
+        Wrapper to redirect stdout or stderr
+        Args:
+            fp (buffer): Buffer to store stdout
+        """
         self.fp = fp
 
     def write(self, s):
         """
         Write to string buffer with timestamp
+        Args:
+            s (str): String to write to buffer
+
+        Returns:
+                It returns None
         """
         string = to_unicode(s)
         if string == '\n' or string == ' ':
@@ -114,13 +101,27 @@ class OutputRedirector(object):
             self.fp.write(output)
 
     def writelines(self, lines):
+        """
+        It write number lines to buffer
+        Args:
+            lines (list): List of lines to write to buffer
+
+        Returns:
+
+        """
         lines = map(to_unicode, lines)
         self.fp.writelines(lines)
 
     def flush(self):
+        """
+        It flushes string buffer
+        Returns:
+
+        """
         self.fp.flush()
 
 
+# stdout redirectord
 stdout_redirector = OutputRedirector(sys.stdout)
 stderr_redirector = OutputRedirector(sys.stderr)
 
@@ -139,10 +140,14 @@ TestResult = unittest.TestResult
 
 
 class _TestResult(TestResult):
-    # note: _TestResult is a pure representation of results.
-    # It lacks the output and reporting ability compares to unittest._TextTestResult.
 
     def __init__(self, verbosity=1, log_file=''):
+        """
+        It generates test result
+        Args:
+            verbosity (int): If ``verbosity > 1`` it logs all details
+            log_file (file): File name to log the ``stdout`` logs
+        """
         TestResult.__init__(self)
         self.log_file = log_file
         self.outputBuffer = StringIO()
@@ -154,7 +159,13 @@ class _TestResult(TestResult):
 
     def startTest(self, test):
         """
-        Start test inherited by unittest TestResult
+        Start test inherited by unittest TestResult.
+        It changes stdout buffer to ``self.outputBuffer``
+        Args:
+            test : Test object to do test
+
+        Returns:
+
         """
         TestResult.startTest(self, test)
         # just one buffer for both stdout and stderr
@@ -165,8 +176,11 @@ class _TestResult(TestResult):
 
     def complete_output(self):
         """
-        Disconnect output redirection and return buffer.
-        writes buffer data to log file if self.log_file is True
+        It disconnects ``self.outputBuffer`` from ``stdout`` and replaces with ``sys.stdout = sys.__stdout__``,
+        ``sys.stderr = sys.__stderr__``
+        writes buffer data to log file ``if self.log_file is True``
+        Returns:
+            It returns buffer ``output``
         """
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
@@ -181,15 +195,27 @@ class _TestResult(TestResult):
 
     def stopTest(self, test):
         """
-        Usually one of addSuccess, addError or addFailure would have been called.
-        But there are some path in unittest that would bypass this.
-        We must disconnect stdout in stopTest(), which is guaranteed to be called.
+        Calls ``addSuccess()`` if testcase passed.
+        Calls ``addError()`` if gets error while testing.
+        Calls ``addFailure()`` if test has failed.
+        It disconnects ``self.outputBuffer`` from ``stdout`` and replaces with ``sys.__stdout__``
+        Args:
+            test: Testcase to stop after it runs
+
+        Returns:
+
         """
         self.complete_output()
 
     def addSuccess(self, test):
         """
-        It calls if the test passes and writes P in stdout
+        It override method of ``class unittest.TestResult``
+        It writes P in console
+        Args:
+            test: Testcase
+
+        Returns:
+
         """
         self.success_count += 1
         TestResult.addSuccess(self, test)
@@ -204,7 +230,13 @@ class _TestResult(TestResult):
 
     def addError(self, test, err):
         """
-        It calls if the test fails and writes E in stderr
+        It override method of ``class unittest.TestResult``
+        It writes E in console
+        Args:
+            test: Testcase
+
+        Returns:
+
         """
         self.error_count += 1
         TestResult.addError(self, test, err)
@@ -220,7 +252,13 @@ class _TestResult(TestResult):
 
     def addFailure(self, test, err):
         """
-        It calls if gets error and writes E in stderr
+        It override method of ``class unittest.TestResult``
+        It writes F in console
+        Args:
+            test: TestCase
+
+        Returns:
+
         """
         self.failure_count += 1
         TestResult.addFailure(self, test, err)
@@ -236,18 +274,22 @@ class _TestResult(TestResult):
 
 
 class HTMLTestRunner:
-    """HTMLTestRunner class"""
-
     def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, report_name='report',
                  open_in_browser=False):
         """
-        @param log: bool If it is True start logs to txt file with timestamp
-        @param verbosity: If it's more than 1 it logs with more details
-        @param output: Report directory
-        @param title:Report title
-        @param description:Test report descriptin
-        @param report_name:report name starts with
-        @param open_in_browser:bool If it is True opens report automatically in browser
+        HTMLTestRunner
+        Args:
+            self (HTMLTestRunner): Object of HTMLTestRunner
+            log (bool): If ``True`` it logs print buffer to *.txt file with timestamp
+            output (str): Report output dir name
+            verbosity (int): If ``verbosity > 1`` it prints brief summary of testcases in console
+            title (str): Title of the Test Report
+            description (str): Description of Test Report
+            report_name (str): Starting name of Test report and log file
+            open_in_browser (bool): If ``True`` it opens report in browser automatically
+
+        Returns:
+            Runner object
         """
         self.report_name = report_name
         self.output = output
@@ -272,7 +314,14 @@ class HTMLTestRunner:
         self.startTime = datetime.now()
 
     def run(self, test):
-        "Run the given test case or test suite."
+        """
+        Run the Test Case
+        Args:
+            test: Test Case
+
+        Returns:
+            It returns ``result``
+        """
         result = _TestResult(self.verbosity, self.log_file)
         test(result)
         self.stopTime = datetime.now()
@@ -280,8 +329,14 @@ class HTMLTestRunner:
         return result
 
     def sortResult(self, result_list):
-        # unittest does not seems to run in any particular order.
-        # Here at least we want to group them together by class.
+        """
+        It sorts the Testcases to run
+        Args:
+            result_list (list): Results list
+
+        Returns:
+            Returns sorted result list
+        """
         rmap = {}
         classes = []
         for n, t, o, e in result_list:
@@ -344,7 +399,21 @@ class HTMLTestRunner:
             webbrowser.open_new_tab('file:///' + os.getcwd() + self.html_report_file_name)
 
     def _generate_report(self, result):
-        '''It generates the report'''
+        """
+        Generates report
+        Args:
+            result: Test Result
+
+        Returns :
+            Returns Test Report dictionary
+            ``report = {
+            'class_testcases': class_testcases,
+            'count': str(result.success_count + result.failure_count + result.error_count),
+            'pass': str(result.success_count),
+            'fail': str(result.failure_count),
+            'error': str(result.error_count),
+        }``
+        """
         class_testcases = []
         sortedResult = self.sortResult(result.result)
         for cid, (cls, cls_results) in enumerate(sortedResult):
@@ -391,7 +460,12 @@ class HTMLTestRunner:
 
     def _generate_report_test(self, fun_testcases, cid, tid, n, t, o, e):
         """
-        It generates report for each testcase functions
+        It appends result to ``fun_testcases``
+        Args:
+            fun_testcases (list): testcase function result list
+
+        Returns:
+
         """
         # e.g. 'pt1.1', 'ft1.1', etc
         has_output = bool(o or e)

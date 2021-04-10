@@ -1,0 +1,12 @@
+site_name: HTMLTestRunner-rv
+nav:
+  - Home: index.md
+  - About: about.md
+  - HTMLTestRunner: api-documentation.md
+  - Tutorial: tutorial.md
+theme: readthedocs
+repo_url: https://github.com/ravikiranb36/HTMLTestRunner.io.git
+site_author: Ravikirana B
+site_description: HTMLTestRunner-rv
+use_directory_urls: true
+copyright: © 2021-2030   Ravikirana B
