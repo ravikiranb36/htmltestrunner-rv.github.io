@@ -49,3 +49,22 @@ def test_suite():
 if __name__ == '__main__':
 test_suite()
 ```
+## Now you can pass external css styling and javascript for report
+### Example:
+```python
+style = """
+    .heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+    border-style:ridge;
+    color:white;
+    background-color:#999900;
+    font-weight:bold;
+    }
+"""
+script = """
+    Your script
+"""
+runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                        open_in_browser=True, description="HTMLTestReport", script=script, style=style)
+```

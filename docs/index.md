@@ -7,23 +7,29 @@ It generates a HTML report to show the result at a glance.
 It logs stdout to *.txt file with timestamp
 Easy to find bugs
 ```
+#[<span style="color: grey;"> Click here for HTMLTestRunner-rv documentation</span>](https://ravikiranb36.github.io/htmltestrunner-rv.github.io/)
+
 #Installation:
 ```bash
 pip install HTMLTestRunner-rv
 ```
+
 # Creating suite
 ```python
 my_test_suite = unittest.TestSuite()
 ```
+
 # output to a file
 ```python
 runner = HTMLTestRunner(
-    title='My unit test', open_in_browser=True)
+title='My unit test', open_in_browser=True)
 ```
+
 # run the test
 ```python
 runner.run(my_test_suite)
 ```
+
 #Example code:
 ```python
 import unittest
@@ -41,5 +47,24 @@ def test_suite():
                             open_in_browser=True, description="HTMLTestReport")
     runner.run(suite)
 if __name__ == '__main__':
-    test_suite()
+test_suite()
+```
+## Now you can pass external css styling and javascript for report
+### Example:
+```python
+style = """
+    .heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+    border-style:ridge;
+    color:white;
+    background-color:#999900;
+    font-weight:bold;
+    }
+"""
+script = """
+    Your script
+"""
+runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                        open_in_browser=True, description="HTMLTestReport", script=script, style=style)
 ```

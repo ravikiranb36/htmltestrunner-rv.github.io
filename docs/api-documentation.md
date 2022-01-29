@@ -1,275 +1,253 @@
-#HTMLTestRunner-rv
-##HTMLTestRunner.runner
+<!-- markdownlint-disable -->
+
+<a href="..\HTMLTestRunner\runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+# <kbd>module</kbd> `runner`
+HTMLTestRunner-rv module to generate HTML report for your testcase ================================================================== 
+
+The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find errors and reduce the debug time. You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp. So it is easy to debug whenever you want. 
+
+*   It automatically opens report in your browser so no need to search report file in your directory.  Just you need to pass `open_in_browser = True`. 
+
+*   Color of Testcase block automatically change as per test result. 
+
+*   You can add your custom style Eg: style = "CSS styling" 
+
+*   You can add your custom script Eg: script = "javascript"  
 
 
-### to\_unicode
+
+**Global Variables**
+---------------
+- **stdout_redirector**
+- **stderr_redirector**
+- **STATUS**
+- **DEFAULT_TITLE**
+- **DEFAULT_DESCRIPTION**
+- **PKG_PATH**
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>function</kbd> `to_string`
 
 ```python
-to_unicode(s)
+to_string(s)
 ```
 
-It strings to unicode
+It convert strings to unicode 
 
-**Arguments**:
+**Args:**
+ 
+ - <b>`s`</b> (str,byte):  String to convert to unicode 
 
-- `s` _str_ - String to convert to unicode
-  
 
-**Returns**:
 
-  It returns unicode
+**Returns:**
+ It returns unicode 
 
-## OutputRedirector Objects
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>class</kbd> `OutputRedirector`
+Wrapper to redirect stdout or stderr 
+
+<a href="..\HTMLTestRunner\runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `__init__`
+
 ```python
-class OutputRedirector(object)
+__init__(fp)
 ```
 
-Wrapper to redirect stdout or stderr
+Wrapper to redirect stdout or stderr 
 
-### \_\_init\_\_
+**Args:**
+ 
+ - <b>`fp`</b> (buffer):  Buffer to store stdout 
+
+
+
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `flush`
+
 ```python
-  __init__(fp)
+flush()
 ```
 
-Wrapper to redirect stdout or stderr
+It flushes string buffer 
 
-**Arguments**:
+**Returns:**
+ 
 
-- `fp` _buffer_ - Buffer to store stdout
+---
 
+<a href="..\HTMLTestRunner\runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-### write
+### <kbd>method</kbd> `write`
+
 ```python
-  write(s)
+write(s)
 ```
 
-Write to string buffer with timestamp
+Write to string buffer with timestamp 
 
-**Arguments**:
-
-- `s` _str_ - String to write to buffer
-  
-
-**Returns**:
-
-  It returns None
+**Args:**
+ 
+ - <b>`s`</b> (str):  String to write to buffer 
 
 
-### writelines
+
+**Returns:**
+  It returns None 
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `writelines`
+
 ```python
-  writelines(lines)
+writelines(lines)
 ```
 
-It write number lines to buffer
+It write number lines to buffer 
 
-**Arguments**:
-
-- `lines` _list_ - List of lines to write to buffer
-  
-
-**Returns**:
+**Args:**
+ 
+ - <b>`lines`</b> (list):  List of lines to write to buffer 
 
 
-### flush
+
+**Returns:**
+ 
+
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L281"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>class</kbd> `HTMLTestRunner`
+
+
+
+
+<a href="..\HTMLTestRunner\runner.py#L282"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `__init__`
+
 ```python
-  flush()
+__init__(
+    log=None,
+    output=None,
+    verbosity=1,
+    title=None,
+    description=None,
+    style='',
+    script='',
+    report_name='report',
+    open_in_browser=False,
+    tested_by='Unknown'
+)
 ```
 
-It flushes string buffer
+HTMLTestRunner 
 
-**Returns**:
+**Args:**
+ 
+ - <b>`self`</b> (HTMLTestRunner):  Object of HTMLTestRunner 
+ - <b>`log`</b> (bool):  If ``True`` it logs print buffer to *.txt file with timestamp 
+ - <b>`output`</b> (str):  Report output dir name 
+ - <b>`verbosity`</b> (int):  If ``verbosity > 1`` it prints brief summary of testcases in console 
+ - <b>`title`</b> (str):  Title of the Test Report 
+ - <b>`description`</b> (str):  Description of Test Report 
+ - <b>`style`</b> (str):  Custom style for report 
+ - <b>`script`</b> (str):  Custom script for report 
+ - <b>`report_name`</b> (str):  Starting name of Test report and log file 
+ - <b>`open_in_browser`</b> (bool):  If ``True`` it opens report in browser automatically 
 
 
-## _TestResult Objects
+
+**Returns:**
+ Runner object 
+
+
+
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L385"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `generate_report`
+
 ```python
-class _TestResult(TestResult)
+generate_report(result)
 ```
 
-### \_\_init\_\_
+It geneartes HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_broser is True It adds stylesheet and script files in reports directory 
+
+---
+
+<a href="..\HTMLTestRunner\runner.py#L362"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `get_report_attributes`
+
 ```python
-  __init__(verbosity=1, log_file='')
+get_report_attributes(result)
 ```
 
-It generates test result
+Return report attributes as a list of (name, value). Override this to add custom attributes. 
 
-**Arguments**:
+---
 
-- `verbosity` _int_ - If ``verbosity > 1`` it logs all details
-- `log_file` _file_ - File name to log the ``stdout`` logs
+<a href="..\HTMLTestRunner\runner.py#L326"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
+### <kbd>method</kbd> `run`
 
-### startTest
 ```python
- | startTest(test)
+run(test)
 ```
 
-Start test inherited by unittest TestResult.
-It changes stdout buffer to ``self.outputBuffer``
+Run the Test Case 
 
-**Arguments**:
-
-  test : Test object to do test
-  
-
-**Returns**:
+**Args:**
+ 
+ - <b>`test`</b>:  Test Case 
 
 
-### complete\_output
+
+**Returns:**
+ It returns ``result`` 
+
+---
+
+### <kbd>method</kbd> `sort_result`
+
 ```python
-  complete_output()
+sort_result(result_list)
 ```
 
-It disconnects ``self.outputBuffer`` from ``stdout`` and replaces with ``sys.stdout = sys.__stdout__``,
-``sys.stderr = sys.__stderr__``
-writes buffer data to log file ``if self.log_file is True``
+It sorts the Testcases to run 
 
-**Returns**:
-
-  It returns buffer ``output``
-
-### stopTest
-```python
-  stopTest(test)
-```
-
-Calls ``addSuccess()`` if testcase passed.
-Calls ``addError()`` if gets error while testing.
-Calls ``addFailure()`` if test has failed.
-It disconnects ``self.outputBuffer`` from ``stdout`` and replaces with ``sys.__stdout__``
-
-**Arguments**:
-
-- `test` - Testcase to stop after it runs
-  
-
-**Returns**:
-
-
-### addSuccess
-```python
-  addSuccess(test)
-```
-
-It override method of ``class unittest.TestResult``
-It writes P in console
-
-**Arguments**:
-
-- `test` - Testcase
-  
-
-**Returns**:
-
-
-### addError
-```python
-  addError(test, err)
-```
-
-It override method of ``class unittest.TestResult``
-It writes E in console
-
-**Arguments**:
-
-- `test` - Testcase
-  
-
-**Returns**:
-
-### addFailure
-```python
-  addFailure(test, err)
-```
-
-It override method of ``class unittest.TestResult``
-It writes F in console
-
-**Arguments**:
-
-- `test` - TestCase
-  
-
-**Returns**:
+**Args:**
+ 
+ - <b>`result_list`</b> (list):  Results list 
 
 
 
-## HTMLTestRunner Objects
-```python
-class HTMLTestRunner()
-```
+**Returns:**
+ Returns sorted result list 
 
 
-### \_\_init\_\_
-```python
-  __init__(log=None, output=None, verbosity=1, title=None, description=None, report_name='report', open_in_browser=False)
-```
-
-HTMLTestRunner
-
-**Arguments**:
-
-- `self` _HTMLTestRunner_ - Object of HTMLTestRunner
-- `log` _bool_ - If ``True`` it logs print buffer to *.txt file with timestamp
-- `output` _str_ - Report output dir name
-- `verbosity` _int_ - If ``verbosity > 1`` it prints brief summary of testcases in console
-- `title` _str_ - Title of the Test Report
-- `description` _str_ - Description of Test Report
-- `report_name` _str_ - Starting name of Test report and log file
-- `open_in_browser` _bool_ - If ``True`` it opens report in browser automatically
-  
-
-**Returns**:
-
-  Runner object
 
 
-### run
-```python
-  run(test)
-```
+---
 
-Run the Test Case
-
-**Arguments**:
-
-- `test` - Test Case
-  
-
-**Returns**:
-
-  It returns ``result``
-
-### sortResult
-```python
-  sortResult(result_list)
-```
-
-It sorts the Testcases to run
-
-**Arguments**:
-
-- `result_list` _list_ - Results list
-  
-
-**Returns**:
-
-  Returns sorted result list
-
-### getReportAttributes
-```python
-  getReportAttributes(result)
-```
-
-Return report attributes as a list of (name, value).
-Override this to add custom attributes.
-
-### generateReport
-```python
-  generateReport(result)
-```
-
-It geneartes HTML report by using unittest report
-@param result:unittest result
-After generates html report it opens report in browser if open_in_broser is True
-It adds stylesheet and script files in reports directory
-
+_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._

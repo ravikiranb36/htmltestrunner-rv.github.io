@@ -12,7 +12,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ravikiranb36/HTMLTestRunner.io.git",
     license="MIT",
-    packages=setuptools.find_packages("HTMLTestRunner", exclude=["tests", "venv", "venv39"]),
+    packages=setuptools.find_packages(exclude=["tests"]),
     include_package_data=True,
     package_data={},
     install_requires=['pyparsing>=2.4.7', 'jinja2>=2.11'],
