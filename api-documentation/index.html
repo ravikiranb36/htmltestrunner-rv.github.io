@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,19 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-194258143-1', 'auto');
-      ga('send', 'pageview');
-  </script>
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -51,7 +40,7 @@
         <a href=".." class="icon icon-home"> HTMLTestRunner-rv</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -68,53 +57,33 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">HTMLTestRunner</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#htmltestrunnerrunner">HTMLTestRunner.runner</a>
+    <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#function-to_string">function to_string</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#class-outputredirector">class OutputRedirector</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#to_unicode">to_unicode</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-__init__">method __init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-flush">method flush</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-write">method write</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#method-writelines">method writelines</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#outputredirector-objects">OutputRedirector Objects</a>
+    <li class="toctree-l2"><a class="reference internal" href="#class-htmltestrunner">class HTMLTestRunner</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#__init__">__init__</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-__init___1">method __init__</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#write">write</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-generate_report">method generate_report</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#writelines">writelines</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-get_report_attributes">method get_report_attributes</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#flush">flush</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-run">method run</a>
     </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_testresult-objects">_TestResult Objects</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#__init___1">__init__</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#starttest">startTest</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#complete_output">complete_output</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stoptest">stopTest</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#addsuccess">addSuccess</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#adderror">addError</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#addfailure">addFailure</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#htmltestrunner-objects">HTMLTestRunner Objects</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#__init___2">__init__</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#run">run</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sortresult">sortResult</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#getreportattributes">getReportAttributes</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#generatereport">generateReport</a>
+    <li class="toctree-l3"><a class="reference internal" href="#method-sort_result">method sort_result</a>
     </li>
         </ul>
     </li>
@@ -149,7 +118,7 @@
     <li>HTMLTestRunner</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ravikiranb36/htmltestrunner-rv.github.io.git/edit/master/docs/api-documentation.md"
+        <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/api-documentation.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -157,179 +126,165 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
-                <h1 id="htmltestrunner-rv">HTMLTestRunner-rv</h1>
-<h2 id="htmltestrunnerrunner">HTMLTestRunner.runner</h2>
-<h3 id="to_unicode">to_unicode</h3>
-<pre><code class="language-python">to_unicode(s)
-</code></pre>
-<p>It strings to unicode</p>
-<p><strong>Arguments</strong>:</p>
+                <!-- markdownlint-disable -->
+
+<p><a href="..\HTMLTestRunner\runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-runner"><kbd>module</kbd> <code>runner</code></h1>
+<p>HTMLTestRunner-rv module to generate HTML report for your testcase ================================================================== </p>
+<p>The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find errors and reduce the debug time. You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp. So it is easy to debug whenever you want. </p>
 <ul>
-<li><code>s</code> <em>str</em> - String to convert to unicode</li>
+<li>
+<p>It automatically opens report in your browser so no need to search report file in your directory.  Just you need to pass <code>open_in_browser = True</code>. </p>
+</li>
+<li>
+<p>Color of Testcase block automatically change as per test result. </p>
+</li>
+<li>
+<p>You can add your custom style Eg: style = "CSS styling" </p>
+</li>
+<li>
+<p>You can add your custom script Eg: script = "javascript"  </p>
+</li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<p>It returns unicode</p>
-<h2 id="outputredirector-objects">OutputRedirector Objects</h2>
-<pre><code class="language-python">class OutputRedirector(object)
-</code></pre>
-<p>Wrapper to redirect stdout or stderr</p>
-<h3 id="__init__">__init__</h3>
-<pre><code class="language-python">  __init__(fp)
-</code></pre>
-<p>Wrapper to redirect stdout or stderr</p>
-<p><strong>Arguments</strong>:</p>
+<h2 id="global-variables"><strong>Global Variables</strong></h2>
 <ul>
-<li><code>fp</code> <em>buffer</em> - Buffer to store stdout</li>
+<li><strong>stdout_redirector</strong></li>
+<li><strong>stderr_redirector</strong></li>
+<li><strong>STATUS</strong></li>
+<li><strong>DEFAULT_TITLE</strong></li>
+<li><strong>DEFAULT_DESCRIPTION</strong></li>
+<li><strong>PKG_PATH</strong></li>
 </ul>
-<h3 id="write">write</h3>
-<pre><code class="language-python">  write(s)
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="function-to_string"><kbd>function</kbd> <code>to_string</code></h2>
+<pre><code class="language-python">to_string(s)
 </code></pre>
-<p>Write to string buffer with timestamp</p>
-<p><strong>Arguments</strong>:</p>
+<p>It convert strings to unicode </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>s</code> <em>str</em> - String to write to buffer</li>
+<li><b><code>s</code></b> (str,byte):  String to convert to unicode </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<p>It returns None</p>
-<h3 id="writelines">writelines</h3>
-<pre><code class="language-python">  writelines(lines)
+<p><strong>Returns:</strong>
+ It returns unicode </p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-outputredirector"><kbd>class</kbd> <code>OutputRedirector</code></h2>
+<p>Wrapper to redirect stdout or stderr </p>
+<p><a href="..\HTMLTestRunner\runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
+<pre><code class="language-python">__init__(fp)
 </code></pre>
-<p>It write number lines to buffer</p>
-<p><strong>Arguments</strong>:</p>
+<p>Wrapper to redirect stdout or stderr </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>lines</code> <em>list</em> - List of lines to write to buffer</li>
+<li><b><code>fp</code></b> (buffer):  Buffer to store stdout </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<h3 id="flush">flush</h3>
-<pre><code class="language-python">  flush()
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-flush"><kbd>method</kbd> <code>flush</code></h3>
+<pre><code class="language-python">flush()
 </code></pre>
-<p>It flushes string buffer</p>
-<p><strong>Returns</strong>:</p>
-<h2 id="_testresult-objects">_TestResult Objects</h2>
-<pre><code class="language-python">class _TestResult(TestResult)
+<p>It flushes string buffer </p>
+<p><strong>Returns:</strong></p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-write"><kbd>method</kbd> <code>write</code></h3>
+<pre><code class="language-python">write(s)
 </code></pre>
-<h3 id="__init___1">__init__</h3>
-<pre><code class="language-python">  __init__(verbosity=1, log_file='')
-</code></pre>
-<p>It generates test result</p>
-<p><strong>Arguments</strong>:</p>
+<p>Write to string buffer with timestamp </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>verbosity</code> <em>int</em> - If <code>verbosity &gt; 1</code> it logs all details</li>
-<li><code>log_file</code> <em>file</em> - File name to log the <code>stdout</code> logs</li>
+<li><b><code>s</code></b> (str):  String to write to buffer </li>
 </ul>
-<h3 id="starttest">startTest</h3>
-<pre><code class="language-python"> | startTest(test)
+<p><strong>Returns:</strong>
+  It returns None </p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-writelines"><kbd>method</kbd> <code>writelines</code></h3>
+<pre><code class="language-python">writelines(lines)
 </code></pre>
-<p>Start test inherited by unittest TestResult.
-It changes stdout buffer to <code>self.outputBuffer</code></p>
-<p><strong>Arguments</strong>:</p>
-<p>test : Test object to do test</p>
-<p><strong>Returns</strong>:</p>
-<h3 id="complete_output">complete_output</h3>
-<pre><code class="language-python">  complete_output()
-</code></pre>
-<p>It disconnects <code>self.outputBuffer</code> from <code>stdout</code> and replaces with <code>sys.stdout = sys.__stdout__</code>,
-<code>sys.stderr = sys.__stderr__</code>
-writes buffer data to log file <code>if self.log_file is True</code></p>
-<p><strong>Returns</strong>:</p>
-<p>It returns buffer <code>output</code></p>
-<h3 id="stoptest">stopTest</h3>
-<pre><code class="language-python">  stopTest(test)
-</code></pre>
-<p>Calls <code>addSuccess()</code> if testcase passed.
-Calls <code>addError()</code> if gets error while testing.
-Calls <code>addFailure()</code> if test has failed.
-It disconnects <code>self.outputBuffer</code> from <code>stdout</code> and replaces with <code>sys.__stdout__</code></p>
-<p><strong>Arguments</strong>:</p>
+<p>It write number lines to buffer </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>test</code> - Testcase to stop after it runs</li>
+<li><b><code>lines</code></b> (list):  List of lines to write to buffer </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<h3 id="addsuccess">addSuccess</h3>
-<pre><code class="language-python">  addSuccess(test)
+<p><strong>Returns:</strong></p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L281"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h2 id="class-htmltestrunner"><kbd>class</kbd> <code>HTMLTestRunner</code></h2>
+<p><a href="..\HTMLTestRunner\runner.py#L282"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-__init___1"><kbd>method</kbd> <code>__init__</code></h3>
+<pre><code class="language-python">__init__(
+    log=None,
+    output=None,
+    verbosity=1,
+    title=None,
+    description=None,
+    style='',
+    script='',
+    report_name='report',
+    open_in_browser=False,
+    tested_by='Unknown'
+)
 </code></pre>
-<p>It override method of <code>class unittest.TestResult</code>
-It writes P in console</p>
-<p><strong>Arguments</strong>:</p>
+<p>HTMLTestRunner </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>test</code> - Testcase</li>
+<li><b><code>self</code></b> (HTMLTestRunner):  Object of HTMLTestRunner </li>
+<li><b><code>log</code></b> (bool):  If <code>True</code> it logs print buffer to *.txt file with timestamp </li>
+<li><b><code>output</code></b> (str):  Report output dir name </li>
+<li><b><code>verbosity</code></b> (int):  If <code>verbosity &gt; 1</code> it prints brief summary of testcases in console </li>
+<li><b><code>title</code></b> (str):  Title of the Test Report </li>
+<li><b><code>description</code></b> (str):  Description of Test Report </li>
+<li><b><code>style</code></b> (str):  Custom style for report </li>
+<li><b><code>script</code></b> (str):  Custom script for report </li>
+<li><b><code>report_name</code></b> (str):  Starting name of Test report and log file </li>
+<li><b><code>open_in_browser</code></b> (bool):  If <code>True</code> it opens report in browser automatically </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<h3 id="adderror">addError</h3>
-<pre><code class="language-python">  addError(test, err)
+<p><strong>Returns:</strong>
+ Runner object </p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L385"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-generate_report"><kbd>method</kbd> <code>generate_report</code></h3>
+<pre><code class="language-python">generate_report(result)
 </code></pre>
-<p>It override method of <code>class unittest.TestResult</code>
-It writes E in console</p>
-<p><strong>Arguments</strong>:</p>
+<p>It geneartes HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_broser is True It adds stylesheet and script files in reports directory </p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L362"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-get_report_attributes"><kbd>method</kbd> <code>get_report_attributes</code></h3>
+<pre><code class="language-python">get_report_attributes(result)
+</code></pre>
+<p>Return report attributes as a list of (name, value). Override this to add custom attributes. </p>
+<hr />
+<p><a href="..\HTMLTestRunner\runner.py#L326"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="method-run"><kbd>method</kbd> <code>run</code></h3>
+<pre><code class="language-python">run(test)
+</code></pre>
+<p>Run the Test Case </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>test</code> - Testcase</li>
+<li><b><code>test</code></b>:  Test Case </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<h3 id="addfailure">addFailure</h3>
-<pre><code class="language-python">  addFailure(test, err)
+<p><strong>Returns:</strong>
+ It returns <code>result</code> </p>
+<hr />
+<h3 id="method-sort_result"><kbd>method</kbd> <code>sort_result</code></h3>
+<pre><code class="language-python">sort_result(result_list)
 </code></pre>
-<p>It override method of <code>class unittest.TestResult</code>
-It writes F in console</p>
-<p><strong>Arguments</strong>:</p>
+<p>It sorts the Testcases to run </p>
+<p><strong>Args:</strong></p>
 <ul>
-<li><code>test</code> - TestCase</li>
+<li><b><code>result_list</code></b> (list):  Results list </li>
 </ul>
-<p><strong>Returns</strong>:</p>
-<h2 id="htmltestrunner-objects">HTMLTestRunner Objects</h2>
-<pre><code class="language-python">class HTMLTestRunner()
-</code></pre>
-<h3 id="__init___2">__init__</h3>
-<pre><code class="language-python">  __init__(log=None, output=None, verbosity=1, title=None, description=None, report_name='report', open_in_browser=False)
-</code></pre>
-<p>HTMLTestRunner</p>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>self</code> <em>HTMLTestRunner</em> - Object of HTMLTestRunner</li>
-<li><code>log</code> <em>bool</em> - If <code>True</code> it logs print buffer to *.txt file with timestamp</li>
-<li><code>output</code> <em>str</em> - Report output dir name</li>
-<li><code>verbosity</code> <em>int</em> - If <code>verbosity &gt; 1</code> it prints brief summary of testcases in console</li>
-<li><code>title</code> <em>str</em> - Title of the Test Report</li>
-<li><code>description</code> <em>str</em> - Description of Test Report</li>
-<li><code>report_name</code> <em>str</em> - Starting name of Test report and log file</li>
-<li><code>open_in_browser</code> <em>bool</em> - If <code>True</code> it opens report in browser automatically</li>
-</ul>
-<p><strong>Returns</strong>:</p>
-<p>Runner object</p>
-<h3 id="run">run</h3>
-<pre><code class="language-python">  run(test)
-</code></pre>
-<p>Run the Test Case</p>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>test</code> - Test Case</li>
-</ul>
-<p><strong>Returns</strong>:</p>
-<p>It returns <code>result</code></p>
-<h3 id="sortresult">sortResult</h3>
-<pre><code class="language-python">  sortResult(result_list)
-</code></pre>
-<p>It sorts the Testcases to run</p>
-<p><strong>Arguments</strong>:</p>
-<ul>
-<li><code>result_list</code> <em>list</em> - Results list</li>
-</ul>
-<p><strong>Returns</strong>:</p>
-<p>Returns sorted result list</p>
-<h3 id="getreportattributes">getReportAttributes</h3>
-<pre><code class="language-python">  getReportAttributes(result)
-</code></pre>
-<p>Return report attributes as a list of (name, value).
-Override this to add custom attributes.</p>
-<h3 id="generatereport">generateReport</h3>
-<pre><code class="language-python">  generateReport(result)
-</code></pre>
-<p>It geneartes HTML report by using unittest report
-@param result:unittest result
-After generates html report it opens report in browser if open_in_broser is True
-It adds stylesheet and script files in reports directory</p>
+<p><strong>Returns:</strong>
+ Returns sorted result list </p>
+<hr />
+<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
               
             </div>
           </div>
@@ -365,19 +320,22 @@ It adds stylesheet and script files in reports directory</p>
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/ravikiranb36/htmltestrunner-rv.github.io.git/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../about/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../tutorial/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tutorial/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
