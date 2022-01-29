@@ -5,20 +5,25 @@ function showCase(level) {
     for (var i = 0; i < trs.length; i++) {
         tr = trs[i];
         id = tr.id;
-        if (id.substr(0,2) == 'ft') {
-            if (level < 1) {
+        if (level == 0) {
+            if (id.substr(0,2) == 'ft' || id.substr(0,2) == 'pt'){
                 tr.className = 'hiddenRow';
             }
-            else {
+        }else if (level == 1) {
+            if (id.substr(0,2) == 'ft'){
                 tr.className = '';
-            }
-        }
-        if (id.substr(0,2) == 'pt') {
-            if (level > 1) {
-                tr.className = '';
-            }
-            else {
+            }else if (id.substr(0,2) == 'pt'){
                 tr.className = 'hiddenRow';
+            }
+        }else if (level == 2) {
+            if (id.substr(0,2) == 'pt'){
+                tr.className = '';
+            }else if (id.substr(0,2) == 'ft'){
+                tr.className = 'hiddenRow';
+            }
+        }else {
+            if ((id.substr(0,2) == 'ft') || (id.substr(0,2) == 'pt')){
+                tr.className = '';
             }
         }
     }
@@ -35,8 +40,10 @@ function showClassDetail(cid, count) {
             tr = document.getElementById(tid);
         }
         id_list[i] = tid;
-        if (tr.className) {
+        if (tr){
+            if (tr.className) {
             toHide = 0;
+        }
         }
     }
     for (var i = 0; i < count; i++) {

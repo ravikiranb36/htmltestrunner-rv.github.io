@@ -66,6 +66,8 @@ margin:3px;
 #result_table td {
     border: 1px solid #777;
     padding: 2px;
+    word-wrap: break-word;
+    max-width:150px;
 }
 #total_row  { font-weight: bold; color: white; background-color: #777; }
 .passClass  { background-color: #53c653; }
@@ -75,7 +77,7 @@ margin:3px;
 .failCase   { background-color: #ffb380;  }
 .errorCase  { background-color: #ff8080;  }
 .hiddenRow  { display: none; }
-.testcase   { margin-left: 2em; }
+.testcase   { margin-left: 2em;}
 /* -- ending ---------------------------------------------------------------------- */
 #ending {
 }

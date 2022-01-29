@@ -36,12 +36,15 @@ __doc__ = \
         Just you need to pass `open_in_browser = True`.
     
     *   Color of Testcase block automatically change as per test result.
-                    
     
+    *   You can add your custom style Eg: style = "CSS styling"
+    
+    *   You can add your custom script Eg: script = "javascript"
+                    
     """
 
 __author__ = "Ravikirana B ravikiranb36@gmail.com"
-__version__ = "1.0.13"
+__version__ = "1.0.17"
 __all__ = ['HTMLTestRunner']
 
 from datetime import datetime
@@ -54,23 +57,25 @@ import unittest
 import shutil
 from jinja2 import Environment, FileSystemLoader
 
-from pyparsing import unicode
 
-
-def to_unicode(s):
+def to_string(s):
     """
-    It strings to unicode
+    It convert strings to unicode
     Args:
-        s (str): String to convert to unicode
+        s (str,byte): String to convert to unicode
 
     Returns:
         It returns unicode
     """
     try:
-        return unicode(s)
-    except UnicodeDecodeError:
-        # s is non ascii byte string
-        return s.decode('utf-8', 'ignore')
+        if isinstance(s, str):
+            return s
+        elif isinstance(s, bytes):
+            s.decode("utf-8", "ignore")
+        else:
+            raise Exception(f"{s} is not string or bytes")
+    except Exception as e:
+        return str(e)
 
 
 class OutputRedirector(object):
@@ -93,7 +98,7 @@ class OutputRedirector(object):
         Returns:
                 It returns None
         """
-        string = to_unicode(s)
+        string = to_string(s)
         if string == '\n' or string == ' ':
             pass
         else:
@@ -109,7 +114,7 @@ class OutputRedirector(object):
         Returns:
 
         """
-        lines = map(to_unicode, lines)
+        lines = map(to_string, lines)
         self.fp.writelines(lines)
 
     def flush(self):
@@ -274,8 +279,8 @@ class _TestResult(TestResult):
 
 
 class HTMLTestRunner:
-    def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, report_name='report',
-                 open_in_browser=False):
+    def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, style="", script="",
+                 report_name='report', open_in_browser=False, tested_by="Unknown"):
         """
         HTMLTestRunner
         Args:
@@ -285,6 +290,8 @@ class HTMLTestRunner:
             verbosity (int): If ``verbosity > 1`` it prints brief summary of testcases in console
             title (str): Title of the Test Report
             description (str): Description of Test Report
+            style (str): Custom style for report
+            script (str): Custom script for report
             report_name (str): Starting name of Test report and log file
             open_in_browser (bool): If ``True`` it opens report in browser automatically
 
@@ -293,6 +300,9 @@ class HTMLTestRunner:
         """
         self.report_name = report_name
         self.output = output
+        self.style = style
+        self.script = script
+        self.tested_by = tested_by
         if self.output is None:
             self.output = 'reports'
         self.open_in_browser = open_in_browser
@@ -311,7 +321,7 @@ class HTMLTestRunner:
         else:
             self.description = description
 
-        self.startTime = datetime.now()
+        self.start_time = datetime.now()
 
     def run(self, test):
         """
@@ -324,11 +334,12 @@ class HTMLTestRunner:
         """
         result = _TestResult(self.verbosity, self.log_file)
         test(result)
-        self.stopTime = datetime.now()
-        self.generateReport(result)
+        self.stop_time = datetime.now()
+        self.generate_report(result)
         return result
 
-    def sortResult(self, result_list):
+    @staticmethod
+    def sort_result(result_list):
         """
         It sorts the Testcases to run
         Args:
@@ -348,13 +359,13 @@ class HTMLTestRunner:
         r = [(cls, rmap[cls]) for cls in classes]
         return r
 
-    def getReportAttributes(self, result):
+    def get_report_attributes(self, result):
         """
         Return report attributes as a list of (name, value).
         Override this to add custom attributes.
         """
-        startTime = str(self.startTime)[:19]
-        duration = str(self.stopTime - self.startTime)
+        start_time = str(self.start_time)[:19]
+        duration = str(self.stop_time - self.start_time)
         status = []
         if result.success_count: status.append('Pass %s' % result.success_count)
         if result.failure_count: status.append('Failure %s' % result.failure_count)
@@ -364,20 +375,21 @@ class HTMLTestRunner:
         else:
             status = 'none'
         return [
-            ('Start Time', startTime),
+            ('Start Time', start_time),
             ('Duration', duration),
             ('Status', status),
-            ('Descrition', self.description)
+            ('Descrition', self.description),
+            ('Tested By', self.tested_by)
         ]
 
-    def generateReport(self, result):
+    def generate_report(self, result):
         """
         It geneartes HTML report by using unittest report
         @param result:unittest result
         After generates html report it opens report in browser if open_in_broser is True
         It adds stylesheet and script files in reports directory
         """
-        report_attrs = self.getReportAttributes(result)
+        report_attrs = self.get_report_attributes(result)
         generator = 'HTMLTestRunner %s' % __version__
         report = self._generate_report(result)
         env = Environment(loader=FileSystemLoader(os.path.join(PKG_PATH, 'templates')))
@@ -387,7 +399,9 @@ class HTMLTestRunner:
             report_attrs=report_attrs,
             title=self.title,
             report=report,
-            stop_time=(self.stopTime - self.startTime),
+            style=self.style,
+            script=self.script,
+            stop_time=(self.stop_time - self.start_time),
         )
 
         shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), f'./{self.output}/stylesheet.css')
@@ -415,8 +429,8 @@ class HTMLTestRunner:
         }``
         """
         class_testcases = []
-        sortedResult = self.sortResult(result.result)
-        for cid, (cls, cls_results) in enumerate(sortedResult):
+        sorted_result = self.sort_result(result.result)
+        for cid, (cls, cls_results) in enumerate(sorted_result):
             # subtotal for a class
             np = nf = ne = 0
             for n, t, o, e in cls_results:
@@ -458,7 +472,8 @@ class HTMLTestRunner:
         }
         return report
 
-    def _generate_report_test(self, fun_testcases, cid, tid, n, t, o, e):
+    @staticmethod
+    def _generate_report_test(fun_testcases, cid, tid, n, t, o, e):
         """
         It appends result to ``fun_testcases``
         Args:
@@ -468,26 +483,14 @@ class HTMLTestRunner:
 
         """
         # e.g. 'pt1.1', 'ft1.1', etc
-        has_output = bool(o or e)
-        if not has_output:
-            return
         tid = (n == 0 and 'p' or 'f') + 't%s.%s' % (cid + 1, tid + 1)
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
 
         # o and e should be byte string because they are collected from stdout and stderr?
-        if not isinstance(o, str):
-            uo = o.decode('utf-8', 'ignore')
-        else:
-            uo = o
-        if not isinstance(e, str):
-            ue = e.decode('utf-8', 'ignore')
-        else:
-            ue = e
-
-        log = uo
-        error = ue
+        log = to_string(o)
+        error = to_string(e)
         testcase = {
             'tid': tid,
             'class': (n == 0 and 'hiddenRow' or 'none'),
