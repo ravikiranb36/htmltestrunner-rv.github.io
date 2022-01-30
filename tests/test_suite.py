@@ -1,4 +1,5 @@
 import unittest
+import math
 
 from HTMLTestRunner.runner import HTMLTestRunner
 from tests.test_1 import TestCase1
@@ -11,3 +12,4 @@ runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test repo
                         open_in_browser=True, description="HTMLTestReport")
 
 runner.run(suite)
+
