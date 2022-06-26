@@ -1,139 +1,122 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Ravikirana B">
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>HTMLTestRunner - HTMLTestRunner-rv</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "HTMLTestRunner";
-    var mkdocs_page_input_path = "api-documentation.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ravikirana B" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>HTMLTestRunner - HTMLTestRunner-rv</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "HTMLTestRunner";
+        var mkdocs_page_input_path = "api-documentation.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> HTMLTestRunner-rv</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> HTMLTestRunner-rv
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">HTMLTestRunner</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">HTMLTestRunner</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#function-to_string">function to_string</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-outputredirector">class OutputRedirector</a>
+    <li class="toctree-l2"><a class="reference internal" href="#class-htmltestrunner">class HTMLTestRunner</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#method-__init__">method __init__</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-__init__">function __init__</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-flush">method flush</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-generate_report">function generate_report</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-write">method write</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-get_report_attributes">function get_report_attributes</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-writelines">method writelines</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-run">function run</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-sort_result">function sort_result</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-htmltestrunner">class HTMLTestRunner</a>
+    <li class="toctree-l2"><a class="reference internal" href="#class-outputredirector">class OutputRedirector</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#method-__init___1">method __init__</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-__init___1">function __init__</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-generate_report">method generate_report</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-flush">function flush</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-get_report_attributes">method get_report_attributes</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-write">function write</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-run">method run</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#method-sort_result">method sort_result</a>
+    <li class="toctree-l3"><a class="reference internal" href="#function-writelines">function writelines</a>
     </li>
         </ul>
     </li>
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../tutorial/">Tutorial</a>
-                    </li>
-                </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tutorial/">Tutorial</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">HTMLTestRunner-rv</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">HTMLTestRunner-rv</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>HTMLTestRunner</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>HTMLTestRunner</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/api-documentation.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
 
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <!-- markdownlint-disable -->
 
-<p><a href="..\HTMLTestRunner\runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h1 id="module-runner"><kbd>module</kbd> <code>runner</code></h1>
+<p><a href="../HTMLTestRunner/runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h1 id="module-runnerpy"><kbd>module</kbd> <code>runner.py</code></h1>
 <p>HTMLTestRunner-rv module to generate HTML report for your testcase ================================================================== </p>
 <p>The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find errors and reduce the debug time. You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp. So it is easy to debug whenever you want. </p>
 <ul>
@@ -160,11 +143,11 @@
 <li><strong>PKG_PATH</strong></li>
 </ul>
 <hr />
-<p><a href="..\HTMLTestRunner\runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<p><a href="../HTMLTestRunner/runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="function-to_string"><kbd>function</kbd> <code>to_string</code></h2>
 <pre><code class="language-python">to_string(s)
 </code></pre>
-<p>It convert strings to unicode </p>
+<p>It converts strings to unicode </p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><b><code>s</code></b> (str,byte):  String to convert to unicode </li>
@@ -172,53 +155,9 @@
 <p><strong>Returns:</strong>
  It returns unicode </p>
 <hr />
-<p><a href="..\HTMLTestRunner\runner.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h2 id="class-outputredirector"><kbd>class</kbd> <code>OutputRedirector</code></h2>
-<p>Wrapper to redirect stdout or stderr </p>
-<p><a href="..\HTMLTestRunner\runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
-<pre><code class="language-python">__init__(fp)
-</code></pre>
-<p>Wrapper to redirect stdout or stderr </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>fp</code></b> (buffer):  Buffer to store stdout </li>
-</ul>
-<hr />
-<p><a href="..\HTMLTestRunner\runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-flush"><kbd>method</kbd> <code>flush</code></h3>
-<pre><code class="language-python">flush()
-</code></pre>
-<p>It flushes string buffer </p>
-<p><strong>Returns:</strong></p>
-<hr />
-<p><a href="..\HTMLTestRunner\runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-write"><kbd>method</kbd> <code>write</code></h3>
-<pre><code class="language-python">write(s)
-</code></pre>
-<p>Write to string buffer with timestamp </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>s</code></b> (str):  String to write to buffer </li>
-</ul>
-<p><strong>Returns:</strong>
-  It returns None </p>
-<hr />
-<p><a href="..\HTMLTestRunner\runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-writelines"><kbd>method</kbd> <code>writelines</code></h3>
-<pre><code class="language-python">writelines(lines)
-</code></pre>
-<p>It write number lines to buffer </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>lines</code></b> (list):  List of lines to write to buffer </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<hr />
-<p><a href="..\HTMLTestRunner\runner.py#L281"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
 <h2 id="class-htmltestrunner"><kbd>class</kbd> <code>HTMLTestRunner</code></h2>
-<p><a href="..\HTMLTestRunner\runner.py#L282"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-__init___1"><kbd>method</kbd> <code>__init__</code></h3>
+<p><a href="../HTMLTestRunner/runner.py#L290"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-__init__"><kbd>function</kbd> <code>__init__</code></h3>
 <pre><code class="language-python">__init__(
     log=None,
     output=None,
@@ -229,7 +168,8 @@
     script='',
     report_name='report',
     open_in_browser=False,
-    tested_by='Unknown'
+    tested_by='Unknown',
+    add_traceback=False
 )
 </code></pre>
 <p>HTMLTestRunner </p>
@@ -245,24 +185,25 @@
 <li><b><code>script</code></b> (str):  Custom script for report </li>
 <li><b><code>report_name</code></b> (str):  Starting name of Test report and log file </li>
 <li><b><code>open_in_browser</code></b> (bool):  If <code>True</code> it opens report in browser automatically </li>
+<li><b><code>add_traceback</code></b> (bool): Adds error trace back to report if True </li>
 </ul>
 <p><strong>Returns:</strong>
  Runner object </p>
 <hr />
-<p><a href="..\HTMLTestRunner\runner.py#L385"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-generate_report"><kbd>method</kbd> <code>generate_report</code></h3>
+<p><a href="../HTMLTestRunner/runner.py#L398"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-generate_report"><kbd>function</kbd> <code>generate_report</code></h3>
 <pre><code class="language-python">generate_report(result)
 </code></pre>
-<p>It geneartes HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_broser is True It adds stylesheet and script files in reports directory </p>
+<p>It generates HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_browser is True It adds stylesheet and script files in reports directory </p>
 <hr />
-<p><a href="..\HTMLTestRunner\runner.py#L362"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-get_report_attributes"><kbd>method</kbd> <code>get_report_attributes</code></h3>
+<p><a href="../HTMLTestRunner/runner.py#L372"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-get_report_attributes"><kbd>function</kbd> <code>get_report_attributes</code></h3>
 <pre><code class="language-python">get_report_attributes(result)
 </code></pre>
 <p>Return report attributes as a list of (name, value). Override this to add custom attributes. </p>
 <hr />
-<p><a href="..\HTMLTestRunner\runner.py#L326"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="method-run"><kbd>method</kbd> <code>run</code></h3>
+<p><a href="../HTMLTestRunner/runner.py#L336"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-run"><kbd>function</kbd> <code>run</code></h3>
 <pre><code class="language-python">run(test)
 </code></pre>
 <p>Run the Test Case </p>
@@ -273,7 +214,8 @@
 <p><strong>Returns:</strong>
  It returns <code>result</code> </p>
 <hr />
-<h3 id="method-sort_result"><kbd>method</kbd> <code>sort_result</code></h3>
+<p><a href="../HTMLTestRunner/runner.py#L351"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-sort_result"><kbd>function</kbd> <code>sort_result</code></h3>
 <pre><code class="language-python">sort_result(result_list)
 </code></pre>
 <p>It sorts the Testcases to run </p>
@@ -284,34 +226,67 @@
 <p><strong>Returns:</strong>
  Returns sorted result list </p>
 <hr />
+<h2 id="class-outputredirector"><kbd>class</kbd> <code>OutputRedirector</code></h2>
+<p>Wrapper to redirect stdout or stderr </p>
+<p><a href="../HTMLTestRunner/runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-__init___1"><kbd>function</kbd> <code>__init__</code></h3>
+<pre><code class="language-python">__init__(fp)
+</code></pre>
+<p>Wrapper to redirect stdout or stderr </p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>fp</code></b> (buffer):  Buffer to store stdout </li>
+</ul>
+<hr />
+<p><a href="../HTMLTestRunner/runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-flush"><kbd>function</kbd> <code>flush</code></h3>
+<pre><code class="language-python">flush()
+</code></pre>
+<p>It flushes string buffer </p>
+<p><strong>Returns:</strong></p>
+<hr />
+<p><a href="../HTMLTestRunner/runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-write"><kbd>function</kbd> <code>write</code></h3>
+<pre><code class="language-python">write(s)
+</code></pre>
+<p>Write to string buffer with timestamp </p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>s</code></b> (str):  String to write to buffer </li>
+</ul>
+<p><strong>Returns:</strong>
+  It returns None </p>
+<hr />
+<p><a href="../HTMLTestRunner/runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
+<h3 id="function-writelines"><kbd>function</kbd> <code>writelines</code></h3>
+<pre><code class="language-python">writelines(lines)
+</code></pre>
+<p>It writes number lines to buffer </p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>lines</code></b> (list):  List of lines to write to buffer </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../about/" class="btn btn-neutral float-left" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../tutorial/" class="btn btn-neutral float-right" title="Tutorial">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../about/" class="btn btn-neutral" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
       <p>© 2021-2030   Ravikirana B</p>
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -319,11 +294,11 @@
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
         <span>
-          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
         </span>
     
     
