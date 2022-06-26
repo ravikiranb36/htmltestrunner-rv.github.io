@@ -8,6 +8,7 @@ test1 = unittest.TestLoader().loadTestsFromTestCase(TestCase1)
 test2 = unittest.TestLoader().loadTestsFromTestCase(TestCase2)
 suite = unittest.TestSuite([test1, test2])
 runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description="HTMLTestReport")
+                        open_in_browser=True, description="HTMLTestReport", tested_by="Ravikirana B",
+                        add_traceback=False)
 
 runner.run(suite)

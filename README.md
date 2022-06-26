@@ -33,21 +33,19 @@ runner.run(my_test_suite)
 #Example code:
 ```python
 import unittest
-from test_print_all_details import TestCasePrintAllDetails
-from test_by_id import TestCaseDetailsById
-from test_details_by_name import TestCaseDetailsByNmae
-from HTMLTestRunner import HTMLTestRunner
 
-def test_suite():
-    test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
-    test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
-    test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
-    suite = unittest.TestSuite([test1,test2,test3])
-    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                            open_in_browser=True, description="HTMLTestReport")
-    runner.run(suite)
-if __name__ == '__main__':
-test_suite()
+from HTMLTestRunner.runner import HTMLTestRunner
+from tests.test_1 import TestCase1
+from tests.test_2 import TestCase2
+
+test1 = unittest.TestLoader().loadTestsFromTestCase(TestCase1)
+test2 = unittest.TestLoader().loadTestsFromTestCase(TestCase2)
+suite = unittest.TestSuite([test1, test2])
+runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
+                        open_in_browser=True, description="HTMLTestReport", tested_by="Ravikirana B",
+                        add_traceback=False)
+
+runner.run(suite)
 ```
 ## Now you can pass external css styling and javascript for report
 ### Example:

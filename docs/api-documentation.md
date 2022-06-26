@@ -1,8 +1,8 @@
 <!-- markdownlint-disable -->
 
-<a href="..\HTMLTestRunner\runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-# <kbd>module</kbd> `runner`
+# <kbd>module</kbd> `runner.py`
 HTMLTestRunner-rv module to generate HTML report for your testcase ================================================================== 
 
 The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find errors and reduce the debug time. You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp. So it is easy to debug whenever you want. 
@@ -28,7 +28,7 @@ The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find
 
 ---
 
-<a href="..\HTMLTestRunner\runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
 ## <kbd>function</kbd> `to_string`
 
@@ -36,7 +36,7 @@ The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find
 to_string(s)
 ```
 
-It convert strings to unicode 
+It converts strings to unicode 
 
 **Args:**
  
@@ -50,98 +50,14 @@ It convert strings to unicode
 
 ---
 
-<a href="..\HTMLTestRunner\runner.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-## <kbd>class</kbd> `OutputRedirector`
-Wrapper to redirect stdout or stderr 
-
-<a href="..\HTMLTestRunner\runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `__init__`
-
-```python
-__init__(fp)
-```
-
-Wrapper to redirect stdout or stderr 
-
-**Args:**
- 
- - <b>`fp`</b> (buffer):  Buffer to store stdout 
-
-
-
-
----
-
-<a href="..\HTMLTestRunner\runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `flush`
-
-```python
-flush()
-```
-
-It flushes string buffer 
-
-**Returns:**
- 
-
----
-
-<a href="..\HTMLTestRunner\runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `write`
-
-```python
-write(s)
-```
-
-Write to string buffer with timestamp 
-
-**Args:**
- 
- - <b>`s`</b> (str):  String to write to buffer 
-
-
-
-**Returns:**
-  It returns None 
-
----
-
-<a href="..\HTMLTestRunner\runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
-### <kbd>method</kbd> `writelines`
-
-```python
-writelines(lines)
-```
-
-It write number lines to buffer 
-
-**Args:**
- 
- - <b>`lines`</b> (list):  List of lines to write to buffer 
-
-
-
-**Returns:**
- 
-
-
----
-
-<a href="..\HTMLTestRunner\runner.py#L281"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
-
 ## <kbd>class</kbd> `HTMLTestRunner`
 
 
 
 
-<a href="..\HTMLTestRunner\runner.py#L282"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L290"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-### <kbd>method</kbd> `__init__`
+### <kbd>function</kbd> `__init__`
 
 ```python
 __init__(
@@ -154,7 +70,8 @@ __init__(
     script='',
     report_name='report',
     open_in_browser=False,
-    tested_by='Unknown'
+    tested_by='Unknown',
+    add_traceback=False
 )
 ```
 
@@ -172,6 +89,7 @@ HTMLTestRunner
  - <b>`script`</b> (str):  Custom script for report 
  - <b>`report_name`</b> (str):  Starting name of Test report and log file 
  - <b>`open_in_browser`</b> (bool):  If ``True`` it opens report in browser automatically 
+ - <b>`add_traceback`</b> (bool): Adds error trace back to report if True 
 
 
 
@@ -183,21 +101,21 @@ HTMLTestRunner
 
 ---
 
-<a href="..\HTMLTestRunner\runner.py#L385"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L398"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-### <kbd>method</kbd> `generate_report`
+### <kbd>function</kbd> `generate_report`
 
 ```python
 generate_report(result)
 ```
 
-It geneartes HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_broser is True It adds stylesheet and script files in reports directory 
+It generates HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_browser is True It adds stylesheet and script files in reports directory 
 
 ---
 
-<a href="..\HTMLTestRunner\runner.py#L362"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L372"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-### <kbd>method</kbd> `get_report_attributes`
+### <kbd>function</kbd> `get_report_attributes`
 
 ```python
 get_report_attributes(result)
@@ -207,9 +125,9 @@ Return report attributes as a list of (name, value). Override this to add custom
 
 ---
 
-<a href="..\HTMLTestRunner\runner.py#L326"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../HTMLTestRunner/runner.py#L336"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
 
-### <kbd>method</kbd> `run`
+### <kbd>function</kbd> `run`
 
 ```python
 run(test)
@@ -228,7 +146,9 @@ Run the Test Case
 
 ---
 
-### <kbd>method</kbd> `sort_result`
+<a href="../HTMLTestRunner/runner.py#L351"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>function</kbd> `sort_result`
 
 ```python
 sort_result(result_list)
@@ -244,6 +164,86 @@ It sorts the Testcases to run
 
 **Returns:**
  Returns sorted result list 
+
+
+---
+
+## <kbd>class</kbd> `OutputRedirector`
+Wrapper to redirect stdout or stderr 
+
+<a href="../HTMLTestRunner/runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>function</kbd> `__init__`
+
+```python
+__init__(fp)
+```
+
+Wrapper to redirect stdout or stderr 
+
+**Args:**
+ 
+ - <b>`fp`</b> (buffer):  Buffer to store stdout 
+
+
+
+
+---
+
+<a href="../HTMLTestRunner/runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>function</kbd> `flush`
+
+```python
+flush()
+```
+
+It flushes string buffer 
+
+**Returns:**
+ 
+
+---
+
+<a href="../HTMLTestRunner/runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>function</kbd> `write`
+
+```python
+write(s)
+```
+
+Write to string buffer with timestamp 
+
+**Args:**
+ 
+ - <b>`s`</b> (str):  String to write to buffer 
+
+
+
+**Returns:**
+  It returns None 
+
+---
+
+<a href="../HTMLTestRunner/runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>function</kbd> `writelines`
+
+```python
+writelines(lines)
+```
+
+It writes number lines to buffer 
+
+**Args:**
+ 
+ - <b>`lines`</b> (list):  List of lines to write to buffer 
+
+
+
+**Returns:**
+ 
 
 
 

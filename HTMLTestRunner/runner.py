@@ -16,7 +16,7 @@
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT.
 # IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
@@ -44,7 +44,7 @@ __doc__ = \
     """
 
 __author__ = "Ravikirana B ravikiranb36@gmail.com"
-__version__ = "1.0.17"
+__version__ = "1.0.18"
 __all__ = ['HTMLTestRunner']
 
 from datetime import datetime
@@ -60,7 +60,7 @@ from jinja2 import Environment, FileSystemLoader
 
 def to_string(s):
     """
-    It convert strings to unicode
+    It converts strings to unicode
     Args:
         s (str,byte): String to convert to unicode
 
@@ -107,7 +107,7 @@ class OutputRedirector(object):
 
     def writelines(self, lines):
         """
-        It write number lines to buffer
+        It writes number lines to buffer
         Args:
             lines (list): List of lines to write to buffer
 
@@ -126,7 +126,7 @@ class OutputRedirector(object):
         self.fp.flush()
 
 
-# stdout redirectord
+# stdout redirected
 stdout_redirector = OutputRedirector(sys.stdout)
 stderr_redirector = OutputRedirector(sys.stderr)
 
@@ -146,12 +146,13 @@ TestResult = unittest.TestResult
 
 class _TestResult(TestResult):
 
-    def __init__(self, verbosity=1, log_file=''):
+    def __init__(self, verbosity=1, log_file='', add_traceback=False):
         """
         It generates test result
         Args:
             verbosity (int): If ``verbosity > 1`` it logs all details
             log_file (file): File name to log the ``stdout`` logs
+            add_traceback (bool): Adds Traceback if True
         """
         TestResult.__init__(self)
         self.log_file = log_file
@@ -161,6 +162,7 @@ class _TestResult(TestResult):
         self.error_count = 0
         self.verbosity = verbosity
         self.result = []
+        self.add_traceback = add_traceback
 
     def startTest(self, test):
         """
@@ -201,7 +203,7 @@ class _TestResult(TestResult):
     def stopTest(self, test):
         """
         Calls ``addSuccess()`` if testcase passed.
-        Calls ``addError()`` if gets error while testing.
+        Calls ``addError()`` if it gets error while testing.
         Calls ``addFailure()`` if test has failed.
         It disconnects ``self.outputBuffer`` from ``stdout`` and replaces with ``sys.__stdout__``
         Args:
@@ -214,7 +216,7 @@ class _TestResult(TestResult):
 
     def addSuccess(self, test):
         """
-        It override method of ``class unittest.TestResult``
+        It overrides method of ``class unittest.TestResult``
         It writes P in console
         Args:
             test: Testcase
@@ -235,9 +237,10 @@ class _TestResult(TestResult):
 
     def addError(self, test, err):
         """
-        It override method of ``class unittest.TestResult``
+        It overrides method of ``class unittest.TestResult``
         It writes E in console
         Args:
+            err: Error
             test: Testcase
 
         Returns:
@@ -246,6 +249,8 @@ class _TestResult(TestResult):
         self.error_count += 1
         TestResult.addError(self, test, err)
         _, _exc_str = self.errors[-1]
+        if not self.add_traceback:
+            _exc_str = ''
         output = self.complete_output()
         self.result.append((2, test, output, _exc_str))
         if self.verbosity > 1:
@@ -257,9 +262,10 @@ class _TestResult(TestResult):
 
     def addFailure(self, test, err):
         """
-        It override method of ``class unittest.TestResult``
+        It overrides method of ``class unittest.TestResult``
         It writes F in console
         Args:
+            err: Error
             test: TestCase
 
         Returns:
@@ -268,6 +274,8 @@ class _TestResult(TestResult):
         self.failure_count += 1
         TestResult.addFailure(self, test, err)
         _, _exc_str = self.failures[-1]
+        if not self.add_traceback:
+            _exc_str = ''
         output = self.complete_output()
         self.result.append((1, test, output, _exc_str))
         if self.verbosity > 1:
@@ -280,7 +288,7 @@ class _TestResult(TestResult):
 
 class HTMLTestRunner:
     def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, style="", script="",
-                 report_name='report', open_in_browser=False, tested_by="Unknown"):
+                 report_name='report', open_in_browser=False, tested_by="Unknown", add_traceback=True):
         """
         HTMLTestRunner
         Args:
@@ -294,10 +302,12 @@ class HTMLTestRunner:
             script (str): Custom script for report
             report_name (str): Starting name of Test report and log file
             open_in_browser (bool): If ``True`` it opens report in browser automatically
+            add_traceback (bool):Adds error trace back to report if True
 
         Returns:
             Runner object
         """
+        self.add_traceback = add_traceback
         self.report_name = report_name
         self.output = output
         self.style = style
@@ -332,7 +342,7 @@ class HTMLTestRunner:
         Returns:
             It returns ``result``
         """
-        result = _TestResult(self.verbosity, self.log_file)
+        result = _TestResult(self.verbosity, self.log_file, self.add_traceback)
         test(result)
         self.stop_time = datetime.now()
         self.generate_report(result)
@@ -367,9 +377,12 @@ class HTMLTestRunner:
         start_time = str(self.start_time)[:19]
         duration = str(self.stop_time - self.start_time)
         status = []
-        if result.success_count: status.append('Pass %s' % result.success_count)
-        if result.failure_count: status.append('Failure %s' % result.failure_count)
-        if result.error_count:   status.append('Error %s' % result.error_count)
+        if result.success_count:
+            status.append('Pass %s' % result.success_count)
+        if result.failure_count:
+            status.append('Failure %s' % result.failure_count)
+        if result.error_count:
+            status.append('Error %s' % result.error_count)
         if status:
             status = ' '.join(status)
         else:
@@ -378,15 +391,15 @@ class HTMLTestRunner:
             ('Start Time', start_time),
             ('Duration', duration),
             ('Status', status),
-            ('Descrition', self.description),
+            ('Description', self.description),
             ('Tested By', self.tested_by)
         ]
 
     def generate_report(self, result):
         """
-        It geneartes HTML report by using unittest report
+        It generates HTML report by using unittest report
         @param result:unittest result
-        After generates html report it opens report in browser if open_in_broser is True
+        After generates html report it opens report in browser if open_in_browser is True
         It adds stylesheet and script files in reports directory
         """
         report_attrs = self.get_report_attributes(result)
@@ -410,7 +423,8 @@ class HTMLTestRunner:
             file.write(output)
         if self.open_in_browser:
             import webbrowser
-            webbrowser.open_new_tab('file:///' + os.getcwd() + self.html_report_file_name)
+            html_report_path = os.path.abspath(self.html_report_file_name)
+            webbrowser.open_new_tab(f'file:///{html_report_path}')
 
     def _generate_report(self, result):
         """
