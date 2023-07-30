@@ -307,20 +307,22 @@ class HTMLTestRunner:
         Returns:
             Runner object
         """
+        self.stop_time = None
         self.add_traceback = add_traceback
         self.report_name = report_name
-        self.output = output
         self.style = style
         self.script = script
         self.tested_by = tested_by
-        if self.output is None:
-            self.output = 'reports'
+        if output is None:
+            output = 'reports'
         self.open_in_browser = open_in_browser
-        self.html_report_file_name = f'./{self.output}/{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html'
-        os.makedirs(os.path.dirname(self.html_report_file_name), exist_ok=True)
+        self.output_dir = os.path.abspath(output)
+        os.makedirs(self.output_dir, exist_ok=True)
+        self.html_report_file_name = os.path.join(self.output_dir,
+                                                  f'{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html')
         self.log_file = ''
         if log:
-            self.log_file = f'./{self.output}/{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}_log.txt'
+            self.log_file = os.path.join(self.output_dir, f'{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}_log.txt')
         self.verbosity = verbosity
         if title is None:
             self.title = DEFAULT_TITLE
@@ -417,8 +419,8 @@ class HTMLTestRunner:
             stop_time=(self.stop_time - self.start_time),
         )
 
-        shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), f'./{self.output}/stylesheet.css')
-        shutil.copy(os.path.join(PKG_PATH, 'static', 'script.js'), f'./{self.output}/script.js')
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), os.path.join(self.output_dir,'stylesheet.css'))
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'script.js'), os.path.join(self.output_dir,'script.js'))
         with open(self.html_report_file_name, 'w') as file:
             file.write(output)
         if self.open_in_browser:
