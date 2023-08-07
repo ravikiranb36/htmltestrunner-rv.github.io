@@ -1,2 +1,4 @@
 include README.md
-recursive-include * *.html *.js *.css
+prune __pycache__
+global-exclude tests/report/*
+recursive-include HTMLTestRunner/* *.html *.js *.css

@@ -44,17 +44,18 @@ __doc__ = \
     """
 
 __author__ = "Ravikirana B ravikiranb36@gmail.com"
-__version__ = "1.0.18"
 __all__ = ['HTMLTestRunner']
+__version__ = '1.1.2'
 
-from datetime import datetime
 import os
 import re
-from io import StringIO
+import shutil
 import sys
 import time
 import unittest
-import shutil
+from datetime import datetime
+from io import StringIO
+
 from jinja2 import Environment, FileSystemLoader
 
 
@@ -78,7 +79,7 @@ def to_string(s):
         return str(e)
 
 
-class OutputRedirector(object):
+class OutputRedirector:
     """Wrapper to redirect stdout or stderr"""
 
     def __init__(self, fp):
@@ -141,10 +142,9 @@ DEFAULT_TITLE = 'Unit Test Report'
 DEFAULT_DESCRIPTION = 'Test report generation using HTMLTestRunner-rv'
 
 PKG_PATH = os.path.dirname(__file__)
-TestResult = unittest.TestResult
 
 
-class _TestResult(TestResult):
+class _TestResult(unittest.TestResult):
 
     def __init__(self, verbosity=1, log_file='', add_traceback=False):
         """
@@ -154,7 +154,7 @@ class _TestResult(TestResult):
             log_file (file): File name to log the ``stdout`` logs
             add_traceback (bool): Adds Traceback if True
         """
-        TestResult.__init__(self)
+        super().__init__()
         self.log_file = log_file
         self.outputBuffer = StringIO()
         self.success_count = 0
@@ -174,7 +174,7 @@ class _TestResult(TestResult):
         Returns:
 
         """
-        TestResult.startTest(self, test)
+        super().startTest(test)
         # just one buffer for both stdout and stderr
         stdout_redirector.fp = self.outputBuffer
         stderr_redirector.fp = self.outputBuffer
@@ -225,13 +225,13 @@ class _TestResult(TestResult):
 
         """
         self.success_count += 1
-        TestResult.addSuccess(self, test)
+        super().addSuccess(test)
         output = self.complete_output()
         self.result.append((0, test, output, ''))
         if self.verbosity > 1:
-            sys.stderr.write('ok ')
-            sys.stderr.write(str(test))
-            sys.stderr.write('\n')
+            sys.stdout.write('ok ')
+            sys.stdout.write(str(test))
+            sys.stdout.write('\n')
         else:
             sys.stdout.write('P')
 
@@ -247,7 +247,7 @@ class _TestResult(TestResult):
 
         """
         self.error_count += 1
-        TestResult.addError(self, test, err)
+        super().addError(test, err)
         _, _exc_str = self.errors[-1]
         if not self.add_traceback:
             _exc_str = ''
@@ -264,6 +264,7 @@ class _TestResult(TestResult):
         """
         It overrides method of ``class unittest.TestResult``
         It writes F in console
+
         Args:
             err: Error
             test: TestCase
@@ -272,7 +273,7 @@ class _TestResult(TestResult):
 
         """
         self.failure_count += 1
-        TestResult.addFailure(self, test, err)
+        super().addFailure(test, err)
         _, _exc_str = self.failures[-1]
         if not self.add_traceback:
             _exc_str = ''
@@ -284,6 +285,25 @@ class _TestResult(TestResult):
             sys.stderr.write('\n')
         else:
             sys.stderr.write('F')
+
+    def addSubTest(self, test: unittest.case.TestCase, subtest: unittest.case.TestCase, err) -> None:
+        """
+        It overrides method of ``class unittest.TestResult``
+        It checks subTest
+
+        Args:
+            err: Error
+            test: TestCase
+            subtest: SubTest
+
+        Returns:
+
+        """
+        if err:
+            self.failure_count += 1
+            self.addFailure(subtest, err)
+        else:
+            self.addSuccess(subtest)
 
 
 class HTMLTestRunner:
@@ -322,7 +342,8 @@ class HTMLTestRunner:
                                                   f'{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}.html')
         self.log_file = ''
         if log:
-            self.log_file = os.path.join(self.output_dir, f'{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}_log.txt')
+            self.log_file = os.path.join(self.output_dir,
+                                         f'{self.report_name}_{time.strftime("%d-%m-%y %I-%M-%S")}_log.txt')
         self.verbosity = verbosity
         if title is None:
             self.title = DEFAULT_TITLE
@@ -364,6 +385,8 @@ class HTMLTestRunner:
         classes = []
         for n, t, o, e in result_list:
             cls = t.__class__
+            if str(cls) == "<class 'unittest.case._SubTest'>":
+                cls = classes[-1]
             if not cls in rmap:
                 rmap[cls] = []
                 classes.append(cls)
@@ -419,8 +442,8 @@ class HTMLTestRunner:
             stop_time=(self.stop_time - self.start_time),
         )
 
-        shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), os.path.join(self.output_dir,'stylesheet.css'))
-        shutil.copy(os.path.join(PKG_PATH, 'static', 'script.js'), os.path.join(self.output_dir,'script.js'))
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'stylesheet.css'), os.path.join(self.output_dir, 'stylesheet.css'))
+        shutil.copy(os.path.join(PKG_PATH, 'static', 'script.js'), os.path.join(self.output_dir, 'script.js'))
         with open(self.html_report_file_name, 'w') as file:
             file.write(output)
         if self.open_in_browser:
@@ -475,7 +498,7 @@ class HTMLTestRunner:
                 'pass': np,
                 'fail': nf,
                 'error': ne,
-                'cid': 'c%s' % (cid + 1),
+                'cid': f'c{cid + 1}',
                 'fun_testcases': fun_testcases,
             }
             class_testcases.append(cls_testcase)
@@ -499,7 +522,7 @@ class HTMLTestRunner:
 
         """
         # e.g. 'pt1.1', 'ft1.1', etc
-        tid = (n == 0 and 'p' or 'f') + 't%s.%s' % (cid + 1, tid + 1)
+        tid = (n == 0 and 'p' or 'f') + f't{cid + 1}.{tid + 1}'
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name

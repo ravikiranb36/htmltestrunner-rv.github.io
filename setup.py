@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 setuptools.setup(
     name="HTMLTestRunner-rv",
     author="Ravikirana B",
-    version='1.0.18',
+    version="1.1.2",
     author_email="ravikiranb36@gmail.com",
     description="HTMLTestRunner for unit test framework",
     long_description=long_description,
