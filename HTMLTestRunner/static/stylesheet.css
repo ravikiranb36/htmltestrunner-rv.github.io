@@ -76,6 +76,7 @@ margin:3px;
 .passCase   { background-color: #53c653; }
 .failCase   { background-color: #ffb380;  }
 .errorCase  { background-color: #ff8080;  }
+.skipCase   { background-color: #9E9E9E;  }
 .hiddenRow  { display: none; }
 .testcase   { margin-left: 2em;}
 /* -- ending ---------------------------------------------------------------------- */

@@ -25,11 +25,13 @@
         <button><a href='javascript:showCase(0)' style="color:#660066;">Summary</a></button>
         <button><a href='javascript:showCase(1)' style="color:#660066;">Failed</a></button>
         <button><a href='javascript:showCase(2)' style="color:#660066;">Passed</a></button>
+        <button><a href='javascript:showCase(4)' style="color:#660066;">Skipped</a></button>
         <button><a href='javascript:showCase(3)' style="color:#660066;">All</a></button>
     </p>
     <table id='result_table'>
         <colgroup>
             <col align='left'/>
+            <col align='right'/>
             <col align='right'/>
             <col align='right'/>
             <col align='right'/>
@@ -42,6 +44,7 @@
             <td>Pass</td>
             <td>Fail</td>
             <td>Error</td>
+            <td>Skip</td>
             <td>View</td>
         </tr>
         {% for cls in report['class_testcases'] %}
@@ -51,6 +54,7 @@
             <td>{{ cls['pass'] }}</td>
             <td>{{ cls['fail'] }}</td>
             <td>{{ cls['error'] }}</td>
+            <td>{{ cls['skip'] }}</td>
             <td>
                 <button><a href="javascript:showClassDetail('{{ cls['cid']}}','{{ cls['count'] }}')"
                            style="color:#660066;">Detail</a></button>
@@ -64,7 +68,7 @@
                            href="javascript:showTestDetail('div_{{testcase['tid']}}')">{{testcase['desc']}}</a>
                     </div>
                 </td>
-                <td colspan='5' align='center'>
+                <td colspan='6' align='center'>
                     <div>
                         <!--css div popup start-->
                         <button>
@@ -95,6 +99,7 @@
             <td>{{report['pass']}}</td>
             <td>{{report['fail']}}</td>
             <td>{{report['error']}}</td>
+            <td>{{report['skip']}}</td>
             <td>&nbsp;</td>
         </tr>
     </table>
