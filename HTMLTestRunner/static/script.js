@@ -1,28 +1,34 @@
 output_list = Array();
-/* level - 0:Summary; 1:Failed; 2:All */
+/* level - 0:Summary; 1:Failed; 2:Passed; 3:All; 4:Skipped */
 function showCase(level) {
     trs = document.getElementsByTagName("tr");
     for (var i = 0; i < trs.length; i++) {
         tr = trs[i];
         id = tr.id;
         if (level == 0) {
-            if (id.substr(0,2) == 'ft' || id.substr(0,2) == 'pt'){
+            if (id.substr(0,2) == 'ft' || id.substr(0,2) == 'pt' || id.substr(0,2) == 'st'){
                 tr.className = 'hiddenRow';
             }
         }else if (level == 1) {
             if (id.substr(0,2) == 'ft'){
                 tr.className = '';
-            }else if (id.substr(0,2) == 'pt'){
+            }else if (id.substr(0,2) == 'pt' || id.substr(0,2) == 'st'){
                 tr.className = 'hiddenRow';
             }
         }else if (level == 2) {
             if (id.substr(0,2) == 'pt'){
                 tr.className = '';
-            }else if (id.substr(0,2) == 'ft'){
+            }else if (id.substr(0,2) == 'ft' || id.substr(0,2) == 'st'){
+                tr.className = 'hiddenRow';
+            }
+        }else if (level == 4) {
+            if (id.substr(0,2) == 'st'){
+                tr.className = '';
+            }else if (id.substr(0,2) == 'ft' || id.substr(0,2) == 'pt'){
                 tr.className = 'hiddenRow';
             }
         }else {
-            if ((id.substr(0,2) == 'ft') || (id.substr(0,2) == 'pt')){
+            if ((id.substr(0,2) == 'ft') || (id.substr(0,2) == 'pt') || (id.substr(0,2) == 'st')){
                 tr.className = '';
             }
         }
@@ -37,6 +43,10 @@ function showClassDetail(cid, count) {
         tr = document.getElementById(tid);
         if (!tr) {
             tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        if (!tr) {
+            tid = 's' + tid0;
             tr = document.getElementById(tid);
         }
         id_list[i] = tid;

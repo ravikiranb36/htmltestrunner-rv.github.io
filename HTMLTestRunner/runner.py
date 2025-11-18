@@ -136,6 +136,7 @@ STATUS = {
     0: 'PASS',
     1: 'FAIL',
     2: 'ERROR',
+    3: 'SKIP',
 }
 
 DEFAULT_TITLE = 'Unit Test Report'
@@ -160,6 +161,7 @@ class _TestResult(unittest.TestResult):
         self.success_count = 0
         self.failure_count = 0
         self.error_count = 0
+        self.skip_count = 0
         self.verbosity = verbosity
         self.result = []
         self.add_traceback = add_traceback
@@ -305,6 +307,29 @@ class _TestResult(unittest.TestResult):
         else:
             self.addSuccess(subtest)
 
+    def addSkip(self, test, reason):
+        """
+        It overrides method of ``class unittest.TestResult``
+        It writes S in console
+        
+        Args:
+            test: TestCase
+            reason: Reason for skipping
+
+        Returns:
+
+        """
+        self.skip_count += 1
+        super().addSkip(test, reason)
+        output = self.complete_output()
+        self.result.append((3, test, output, reason))
+        if self.verbosity > 1:
+            sys.stdout.write('skip ')
+            sys.stdout.write(str(test))
+            sys.stdout.write('\n')
+        else:
+            sys.stdout.write('S')
+
 
 class HTMLTestRunner:
     def __init__(self, log=None, output=None, verbosity=1, title=None, description=None, style="", script="",
@@ -408,6 +433,8 @@ class HTMLTestRunner:
             status.append('Failure %s' % result.failure_count)
         if result.error_count:
             status.append('Error %s' % result.error_count)
+        if result.skip_count:
+            status.append('Skip %s' % result.skip_count)
         if status:
             status = ' '.join(status)
         else:
@@ -471,14 +498,16 @@ class HTMLTestRunner:
         sorted_result = self.sort_result(result.result)
         for cid, (cls, cls_results) in enumerate(sorted_result):
             # subtotal for a class
-            np = nf = ne = 0
+            np = nf = ne = ns = 0
             for n, t, o, e in cls_results:
                 if n == 0:
                     np += 1
                 elif n == 1:
                     nf += 1
-                else:
+                elif n == 2:
                     ne += 1
+                else:
+                    ns += 1
 
             # format class description
             if cls.__module__ == "__main__":
@@ -494,20 +523,22 @@ class HTMLTestRunner:
             cls_testcase = {
                 'style': ne > 0 and 'errorClass' or nf > 0 and 'failClass' or 'passClass',
                 'desc': desc,
-                'count': np + nf + ne,
+                'count': np + nf + ne + ns,
                 'pass': np,
                 'fail': nf,
                 'error': ne,
+                'skip': ns,
                 'cid': f'c{cid + 1}',
                 'fun_testcases': fun_testcases,
             }
             class_testcases.append(cls_testcase)
         report = {
             'class_testcases': class_testcases,
-            'count': str(result.success_count + result.failure_count + result.error_count),
+            'count': str(result.success_count + result.failure_count + result.error_count + result.skip_count),
             'pass': str(result.success_count),
             'fail': str(result.failure_count),
             'error': str(result.error_count),
+            'skip': str(result.skip_count),
         }
         return report
 
@@ -522,7 +553,13 @@ class HTMLTestRunner:
 
         """
         # e.g. 'pt1.1', 'ft1.1', etc
-        tid = (n == 0 and 'p' or 'f') + f't{cid + 1}.{tid + 1}'
+        if n == 0:
+            tid_prefix = 'p'
+        elif n == 3:
+            tid_prefix = 's'
+        else:
+            tid_prefix = 'f'
+        tid = tid_prefix + f't{cid + 1}.{tid + 1}'
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
@@ -533,7 +570,7 @@ class HTMLTestRunner:
         testcase = {
             'tid': tid,
             'class': (n == 0 and 'hiddenRow' or 'none'),
-            'style': n == 2 and 'errorCase' or (n == 1 and 'failCase' or 'passCase'),
+            'style': n == 2 and 'errorCase' or (n == 1 and 'failCase' or (n == 3 and 'skipCase' or 'passCase')),
             'desc': desc,
             'log': re.sub('\x00', '', log),
             'error': error,
