@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="HTMLTestRunner-rv" /><meta name="author" content="Ravikirana B" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Professional HTML Test Reporting for Python unittest" /><meta name="author" content="Ravikirana B" />
       <link rel="shortcut icon" href="img/favicon.ico" />
     <title>HTMLTestRunner-rv</title>
-    <meta name="google-site-verification" content="59pdbV_lv1MNs9RVvuf3oJdwiEeBDFTIdBkjIcXxIVA" />
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -18,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,15 +34,29 @@
           <a href="." class="icon icon-home"> HTMLTestRunner-rv
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-create-your-test-suite">1. Create your Test Suite</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-run-with-htmltestrunner">2. Run with HTMLTestRunner</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#support-the-project">Support the Project</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -52,7 +65,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="api-documentation/">HTMLTestRunner</a>
+                <li class="toctree-l1"><a class="reference internal" href="api-documentation/">API Reference</a>
                 </li>
               </ul>
               <ul>
@@ -72,76 +85,65 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Home</li>
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/index.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="htmltestrunner">HTMLTestRunner</h1>
-<pre><code class="language-text">HTMLTestRunner for python3 
-
-A TestRunner for use with the Python unit testing framework. 
-It generates a HTML report to show the result at a glance.
-It logs stdout to *.txt file with timestamp
-Easy to find bugs
+                <h1 id="htmltestrunner-rv">HTMLTestRunner-rv</h1>
+<p><strong>HTMLTestRunner-rv</strong> is a modernized version of the popular HTMLTestRunner, designed for Python 3.7+ with a focus on professional aesthetics, detailed metrics, and ease of use.</p>
+<pre><code class="language-text">Professional HTML Reporting for Python unittest
+- Visual Dashboard with key metrics
+- Per-test execution timing
+- Built-in filtering (Summary, Pass, Fail, Error, Skip)
+- Comprehensive execution logs with dark terminal theme
+- Full support for subtests and skipped tests
 </code></pre>
-<h1 id="click-here-for-htmltestrunner-rv-documentation"><a href="https://ravikiranb36.github.io/htmltestrunner-rv.github.io/"><span style="color: grey;"> Click here for HTMLTestRunner-rv documentation</span></a></h1>
-<h1 id="installation">Installation:</h1>
+<p><a href="https://ravikiranb36.github.io/htmltestrunner-rv.github.io/"><strong>Click here for Full Documentation</strong></a></p>
+<h2 id="installation">Installation</h2>
 <pre><code class="language-bash">pip install HTMLTestRunner-rv
 </code></pre>
-<h1 id="creating-suite">Creating suite</h1>
-<pre><code class="language-python">my_test_suite = unittest.TestSuite()
-</code></pre>
-<h1 id="output-to-a-file">output to a file</h1>
-<pre><code class="language-python">runner = HTMLTestRunner(
-title='My unit test', open_in_browser=True)
-</code></pre>
-<h1 id="run-the-test">run the test</h1>
-<pre><code class="language-python">runner.run(my_test_suite)
-</code></pre>
-<h1 id="example-code">Example code:</h1>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="1-create-your-test-suite">1. Create your Test Suite</h3>
 <pre><code class="language-python">import unittest
-from test_print_all_details import TestCasePrintAllDetails
-from test_by_id import TestCaseDetailsById
-from test_details_by_name import TestCaseDetailsByNmae
-from HTMLTestRunner import HTMLTestRunner
+from HTMLTestRunner.runner import HTMLTestRunner
 
-def test_suite():
-    test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
-    test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
-    test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
-    suite = unittest.TestSuite([test1,test2,test3])
-    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                            open_in_browser=True, description=&quot;HTMLTestReport&quot;)
-    runner.run(suite)
-if __name__ == '__main__':
-test_suite()
+# Import your test cases
+from tests.my_test_file import MyTestCase
+
+def create_suite():
+    loader = unittest.TestLoader()
+    suite = unittest.TestSuite()
+    suite.addTest(loader.loadTestsFromTestCase(MyTestCase))
+    return suite
 </code></pre>
-<h2 id="now-you-can-pass-external-css-styling-and-javascript-for-report">Now you can pass external css styling and javascript for report</h2>
-<h3 id="example">Example:</h3>
-<pre><code class="language-python">style = &quot;&quot;&quot;
-    .heading {
-    margin-top: 0ex;
-    margin-bottom: 1ex;
-    border-style:ridge;
-    color:white;
-    background-color:#999900;
-    font-weight:bold;
-    }
-&quot;&quot;&quot;
-script = &quot;&quot;&quot;
-    Your script
-&quot;&quot;&quot;
-runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description=&quot;HTMLTestReport&quot;, script=script, style=style)
+<h3 id="2-run-with-htmltestrunner">2. Run with HTMLTestRunner</h3>
+<pre><code class="language-python">if __name__ == '__main__':
+    runner = HTMLTestRunner(
+        title='Test Report Review',
+        description='Initial verification of the system',
+        tested_by='Your Name',
+        open_in_browser=True
+    )
+    runner.run(create_suite())
 </code></pre>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Aesthetic Dashboard:</strong> At-a-glance summary of Pass/Fail/Error/Skip rates.</li>
+<li><strong>Timing:</strong> Every test case includes its precise execution duration.</li>
+<li><strong>Filtering:</strong> Interactive filters to isolate failed or errored tests quickly.</li>
+<li><strong>Clean API:</strong> Refactored for readability and modern Python standards.</li>
+<li><strong>Metadata:</strong> Tracks start time, end time, and total duration automatically.</li>
+</ul>
+<h2 id="support-the-project">Support the Project</h2>
+<p>If you find this project useful, consider supporting it:
+- <a href="https://razorpay.me/@ravikiranabyadarahalli">Click here for Donation</a></p>
               
             </div>
           </div><footer>
@@ -153,7 +155,7 @@ runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test repo
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>© 2021-2030   Ravikirana B</p>
+      <p>© 2021-2030 Ravikirana B</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -179,20 +181,21 @@ runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test repo
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme_extra.js" defer></script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.3.0
-Build Date UTC : 2022-06-26 17:38:40.175442+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2026-03-16 12:10:48.559929+00:00
 -->

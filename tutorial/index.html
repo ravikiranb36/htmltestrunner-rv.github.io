@@ -8,7 +8,8 @@
     <title>Tutorial - HTMLTestRunner-rv</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +34,7 @@
           <a href=".." class="icon icon-home"> HTMLTestRunner-rv
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -49,25 +49,37 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../api-documentation/">HTMLTestRunner</a>
+                <li class="toctree-l1"><a class="reference internal" href="../api-documentation/">API Reference</a>
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Tutorial</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Tutorial</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#installation-of-htmltestrunner-rv">Installation of HTMLTestRunner-rv</a>
+    <li class="toctree-l2"><a class="reference internal" href="#1-installation">1. Installation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#importing-htmltestrunner">Importing HTMLTestRunner</a>
+    <li class="toctree-l2"><a class="reference internal" href="#2-basic-setup">2. Basic Setup</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#import-unittest">Import unittest</a>
+    <li class="toctree-l2"><a class="reference internal" href="#3-creating-a-test-suite">3. Creating a Test Suite</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#import-your-testcase-classes">import your testcase classes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#4-running-and-generating-the-report">4. Running and Generating the Report</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-suite">Create suite</a>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#handling-errors-and-tracebacks">Handling Errors and Tracebacks</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-runner">Create Runner</a>
+        </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#good-luck">GOOD LUCK!!</a>
+    <li class="toctree-l2"><a class="reference internal" href="#custom-styling-css-mapping">Custom Styling &amp; CSS Mapping</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-css-classes">Core CSS Classes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#status-specific-styling">Status-Specific Styling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-dark-theme-override">Example: Dark Theme Override</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pro-tips">Pro Tips</a>
     </li>
     </ul>
                 </li>
@@ -85,56 +97,156 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Tutorial</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/tutorial.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/tutorial.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="getting-started">Getting Started</h1>
-<h2 id="installation-of-htmltestrunner-rv">Installation of HTMLTestRunner-rv</h2>
-<pre><code class="language-shell">pip install HTMLTestRunner-rv
+                <h1 id="getting-started-with-htmltestrunner-rv">Getting Started with HTMLTestRunner-rv</h1>
+<p>Follow this step-by-step guide to integrate <strong>HTMLTestRunner-rv</strong> into your projects.</p>
+<h2 id="1-installation">1. Installation</h2>
+<p>Install the package via <code>pip</code>:</p>
+<pre><code class="language-bash">pip install HTMLTestRunner-rv
 </code></pre>
-<h2 id="importing-htmltestrunner">Importing HTMLTestRunner</h2>
-<pre><code class="language-python">from HTMLTestRunner import HTMLTestRunner
-</code></pre>
-<h2 id="import-unittest">Import unittest</h2>
+<h2 id="2-basic-setup">2. Basic Setup</h2>
+<p>First, import the necessary modules:</p>
 <pre><code class="language-python">import unittest
+from HTMLTestRunner.runner import HTMLTestRunner
+
+# Import your test cases from your project files
+from tests.test_authentication import TestAuth
+from tests.test_database import TestDB
 </code></pre>
-<h2 id="import-your-testcase-classes">import your testcase classes</h2>
-<pre><code class="language-python">from testcase_file1 import TestCase1
-from testcase_file2 import TestCase2
+<h2 id="3-creating-a-test-suite">3. Creating a Test Suite</h2>
+<p>The most effective way to manage multiple test cases is to create a suite:</p>
+<pre><code class="language-python">def create_test_suite():
+    # Use TestLoader for modern compatibility (Python 3.7+)
+    loader = unittest.TestLoader()
+    suite = unittest.TestSuite()
+
+    # Load all tests from specific classes
+    suite.addTest(loader.loadTestsFromTestCase(TestAuth))
+    suite.addTest(loader.loadTestsFromTestCase(TestDB))
+
+    return suite
 </code></pre>
-<h2 id="create-suite">Create suite</h2>
-<pre><code class="language-python">test1 = unittest.TestLoader().loadTestsFromTestCase(TestCase1)
-test2 = unittest.TestLoader().loadTestsFromTestCase(TestCase2)
-suite = unittest.TestSuite([test1, test2])
+<h2 id="4-running-and-generating-the-report">4. Running and Generating the Report</h2>
+<p>Initialize the <code>HTMLTestRunner</code> with your desired configuration:</p>
+<pre><code class="language-python">if __name__ == '__main__':
+    # Define the runner with custom attributes
+    runner = HTMLTestRunner(
+        output='reports',             # Directory where the report will be saved
+        title='Test Report Review',   # Title shown at the top of the report
+        description='Daily regression test results',
+        tested_by='Quality Assurance Team',
+        open_in_browser=True,         # Automatically opens the report after execution
+        log=True                      # Save console output to a separate log file
+    )
+
+    # Run the suite
+    runner.run(create_test_suite())
 </code></pre>
-<h2 id="create-runner">Create Runner</h2>
-<pre><code class="language-python">runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description=&quot;HTMLTestReport&quot;)
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="handling-errors-and-tracebacks">Handling Errors and Tracebacks</h3>
+<p>By default, the runner includes full error tracebacks. If you need to disable them for a cleaner report, set <code>add_traceback=False</code>:</p>
+<pre><code class="language-python">runner = HTMLTestRunner(add_traceback=False)
 </code></pre>
-<pre><code class="language-python">runner.run(suite)
+<h2 id="custom-styling-css-mapping">Custom Styling &amp; CSS Mapping</h2>
+<p>You can inject your own CSS to completely override the report's appearance using the <code>style</code> parameter.</p>
+<h3 id="core-css-classes">Core CSS Classes</h3>
+<p>To effectively customize the report, you can target these specific classes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Element</th>
+<th style="text-align: left;">CSS Class</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Main Title</strong></td>
+<td style="text-align: left;"><code>h1</code></td>
+<td style="text-align: left;">The large title at the very top.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Header Card</strong></td>
+<td style="text-align: left;"><code>.report-header</code></td>
+<td style="text-align: left;">The white container holding metadata.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dashboard Card</strong></td>
+<td style="text-align: left;"><code>.summary-card</code></td>
+<td style="text-align: left;">The individual metric cards (Total, Pass, etc.).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Test Class Row</strong></td>
+<td style="text-align: left;"><code>.test-class-row</code></td>
+<td style="text-align: left;">The row representing a Python test class.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Test Case Row</strong></td>
+<td style="text-align: left;"><code>.test-case-row</code></td>
+<td style="text-align: left;">The row representing an individual test method.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Status Button</strong></td>
+<td style="text-align: left;"><code>.status-btn</code></td>
+<td style="text-align: left;">The color-coded status button (PASS, FAIL, etc.).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Log Window</strong></td>
+<td style="text-align: left;"><code>.log-window</code></td>
+<td style="text-align: left;">The terminal-style log container.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-specific-styling">Status-Specific Styling</h3>
+<p>The runner applies specific classes based on the test result:</p>
+<ul>
+<li><strong>Pass:</strong> <code>.passClass</code> (row) and <code>.btn-pass</code> (button)</li>
+<li><strong>Fail:</strong> <code>.failClass</code> (row) and <code>.btn-fail</code> (button)</li>
+<li><strong>Error:</strong> <code>.errorClass</code> (row) and <code>.btn-error</code> (button)</li>
+<li><strong>Skip:</strong> <code>.skipClass</code> (row) and <code>.btn-skip</code> (button)</li>
+</ul>
+<h3 id="example-dark-theme-override">Example: Dark Theme Override</h3>
+<pre><code class="language-python">dark_theme_css = &quot;&quot;&quot;
+    body { background-color: #121212; color: #e0e0e0; }
+    .report-header, .summary-card, .test-report-table { 
+        background: #1e1e1e; 
+        color: #ffffff; 
+        border: 1px solid #333; 
+    }
+    .test-class-row { background: #252525; }
+    .table-header-row { background: #333333; }
+&quot;&quot;&quot;
+
+runner = HTMLTestRunner(style=dark_theme_css)
 </code></pre>
-<h2 id="good-luck">GOOD LUCK!!</h2>
+<h2 id="pro-tips">Pro Tips</h2>
+<ul>
+<li><strong>Filter Early:</strong> Use the buttons at the top of the generated report to focus on failed tests first.</li>
+<li><strong>Check Durations:</strong> Use the per-test timing column to find slow-running tests.</li>
+<li><strong>Support the Project:</strong> This project is proudly funded by <strong><a href="https://rvanveshana.com/">RV Anveshana</a></strong>. Consider donating to support further development!</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../api-documentation/" class="btn btn-neutral float-left" title="HTMLTestRunner"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api-documentation/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>© 2021-2030   Ravikirana B</p>
+      <p>© 2021-2030 Ravikirana B</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -160,14 +272,15 @@ suite = unittest.TestSuite([test1, test2])
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

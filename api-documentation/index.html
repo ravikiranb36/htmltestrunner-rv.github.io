@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ravikirana B" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>HTMLTestRunner - HTMLTestRunner-rv</title>
+    <title>API Reference - HTMLTestRunner-rv</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "HTMLTestRunner";
+        var mkdocs_page_name = "API Reference";
         var mkdocs_page_input_path = "api-documentation.md";
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +34,7 @@
           <a href=".." class="icon icon-home"> HTMLTestRunner-rv
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -49,35 +49,21 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">HTMLTestRunner</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API Reference</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#global-variables">Global Variables</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#function-to_string">function to_string</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-htmltestrunner">class HTMLTestRunner</a>
+    <li class="toctree-l2"><a class="reference internal" href="#htmltestrunnerrunner">HTMLTestRunner.runner</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#function-__init__">function __init__</a>
+    <li class="toctree-l3"><a class="reference internal" href="#HTMLTestRunner.runner">runner</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#HTMLTestRunner.runner--htmltestrunner-rv-core-module">HTMLTestRunner-rv core module.</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-generate_report">function generate_report</a>
+    <li class="toctree-l4"><a class="reference internal" href="#HTMLTestRunner.runner.OutputRedirector">OutputRedirector</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-get_report_attributes">function get_report_attributes</a>
+    <li class="toctree-l4"><a class="reference internal" href="#HTMLTestRunner.runner.HTMLTestRunner">HTMLTestRunner</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-run">function run</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-sort_result">function sort_result</a>
+    <li class="toctree-l4"><a class="reference internal" href="#HTMLTestRunner.runner.convert_to_string">convert_to_string</a>
     </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#class-outputredirector">class OutputRedirector</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#function-__init___1">function __init__</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-flush">function flush</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-write">function write</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#function-writelines">function writelines</a>
     </li>
         </ul>
     </li>
@@ -101,174 +87,1818 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>HTMLTestRunner</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/api-documentation.md"
-          class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/ravikiranb36/HTMLTestRunner.io.git/edit/master/docs/api-documentation.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
 </div>
-
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <!-- markdownlint-disable -->
+                <h1 id="api-reference">API Reference</h1>
+<p>This page contains automatically generated documentation for the <strong>HTMLTestRunner-rv</strong> core modules.</p>
+<h2 id="htmltestrunnerrunner">HTMLTestRunner.runner</h2>
+<p>The main runner module responsible for test execution and report generation.</p>
 
-<p><a href="../HTMLTestRunner/runner.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h1 id="module-runnerpy"><kbd>module</kbd> <code>runner.py</code></h1>
-<p>HTMLTestRunner-rv module to generate HTML report for your testcase ================================================================== </p>
-<p>The HTMLTestRunner provides easy way to generate HTML Test Reports. Easy to find errors and reduce the debug time. You no need to see console to see the debug messages, it logs every print logs in to *.txt with timestamp. So it is easy to debug whenever you want. </p>
-<ul>
-<li>
-<p>It automatically opens report in your browser so no need to search report file in your directory.  Just you need to pass <code>open_in_browser = True</code>. </p>
-</li>
-<li>
-<p>Color of Testcase block automatically change as per test result. </p>
-</li>
-<li>
-<p>You can add your custom style Eg: style = "CSS styling" </p>
-</li>
-<li>
-<p>You can add your custom script Eg: script = "javascript"  </p>
-</li>
-</ul>
-<h2 id="global-variables"><strong>Global Variables</strong></h2>
-<ul>
-<li><strong>stdout_redirector</strong></li>
-<li><strong>stderr_redirector</strong></li>
-<li><strong>STATUS</strong></li>
-<li><strong>DEFAULT_TITLE</strong></li>
-<li><strong>DEFAULT_DESCRIPTION</strong></li>
-<li><strong>PKG_PATH</strong></li>
-</ul>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L61"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h2 id="function-to_string"><kbd>function</kbd> <code>to_string</code></h2>
-<pre><code class="language-python">to_string(s)
-</code></pre>
-<p>It converts strings to unicode </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>s</code></b> (str,byte):  String to convert to unicode </li>
-</ul>
-<p><strong>Returns:</strong>
- It returns unicode </p>
-<hr />
-<h2 id="class-htmltestrunner"><kbd>class</kbd> <code>HTMLTestRunner</code></h2>
-<p><a href="../HTMLTestRunner/runner.py#L290"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-__init__"><kbd>function</kbd> <code>__init__</code></h3>
-<pre><code class="language-python">__init__(
-    log=None,
-    output=None,
-    verbosity=1,
-    title=None,
-    description=None,
-    style='',
-    script='',
-    report_name='report',
-    open_in_browser=False,
-    tested_by='Unknown',
-    add_traceback=False
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="HTMLTestRunner.runner" class="doc doc-heading">
+            <code>HTMLTestRunner.runner</code>
+
+
+</h3>
+
+    <div class="doc doc-contents first">
+
+        <h4 id="HTMLTestRunner.runner--htmltestrunner-rv-core-module">HTMLTestRunner-rv core module.</h4>
+<p>This module provides the main <code>HTMLTestRunner</code> class, which extends <code>unittest.TextTestRunner</code>
+capabilities to generate professional-grade HTML reports. It includes built-in support for
+capturing output, tracking execution timing, and a dashboard-style visualization.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="HTMLTestRunner.runner.OutputRedirector" class="doc doc-heading">
+            <code>OutputRedirector</code>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Intercepts and redirects stdout or stderr to a string buffer.</p>
+<p>This class prepends a timestamp to every line written to the buffer
+to provide a clear execution timeline within the final report.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OutputRedirector</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Intercepts and redirects stdout or stderr to a string buffer.</span>
+
+<span class="sd">    This class prepends a timestamp to every line written to the buffer</span>
+<span class="sd">    to provide a clear execution timeline within the final report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_pointer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the redirector with a target buffer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_pointer (StringIO): The buffer where output will be stored.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span> <span class="o">=</span> <span class="n">file_pointer</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writes text to the buffer, adding timestamps to non-empty lines.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text (str): The text content to write.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">convert_to_string</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="ow">or</span> <span class="n">content</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">timestamped_output</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">29</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">timestamped_output</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">writelines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Writes a list of lines to the buffer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lines (list[str]): A list of strings to write.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">convert_to_string</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Flushes the underlying buffer.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.OutputRedirector.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">file_pointer</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initializes the redirector with a target buffer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file_pointer</code></b>
+                  (<code><span title="io.StringIO">StringIO</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The buffer where output will be stored.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_pointer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the redirector with a target buffer.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_pointer (StringIO): The buffer where output will be stored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span> <span class="o">=</span> <span class="n">file_pointer</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.OutputRedirector.flush" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flush</span><span class="p">()</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Flushes the underlying buffer.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">flush</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flushes the underlying buffer.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.OutputRedirector.write" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Writes text to the buffer, adding timestamps to non-empty lines.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>text</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The text content to write.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes text to the buffer, adding timestamps to non-empty lines.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text (str): The text content to write.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">convert_to_string</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">content</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="ow">or</span> <span class="n">content</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">timestamped_output</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="n">content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">29</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">timestamped_output</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.OutputRedirector.writelines" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Writes a list of lines to the buffer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>lines</code></b>
+                  (<code><span title="list">list</span>[<span title="str">str</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>A list of strings to write.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">writelines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes a list of lines to the buffer.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        lines (list[str]): A list of strings to write.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">convert_to_string</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file_pointer</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="HTMLTestRunner.runner.HTMLTestRunner" class="doc doc-heading">
+            <code>HTMLTestRunner</code>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>The main class for running unit tests and generating an HTML report.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HTMLTestRunner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main class for running unit tests and generating an HTML report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                 <span class="n">report_name</span><span class="o">=</span><span class="s1">&#39;report&#39;</span><span class="p">,</span> <span class="n">open_in_browser</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tested_by</span><span class="o">=</span><span class="s2">&quot;Unknown&quot;</span><span class="p">,</span> <span class="n">add_traceback</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the HTMLTestRunner.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            log (bool): If True, redirects print output to a timestamped log file.</span>
+<span class="sd">            output (str): Directory name where the report and logs will be saved. Defaults to &#39;reports&#39;.</span>
+<span class="sd">            verbosity (int): Level of console output (0, 1, or 2).</span>
+<span class="sd">            title (str): The title displayed at the top of the HTML report.</span>
+<span class="sd">            description (str): A brief description displayed in the report metadata.</span>
+<span class="sd">            style (str): Custom CSS string to inject into the report.</span>
+<span class="sd">            script (str): Custom JavaScript string to inject into the report.</span>
+<span class="sd">            report_name (str): The prefix for the generated report filename.</span>
+<span class="sd">            open_in_browser (bool): Automatically open the generated report in the default web browser.</span>
+<span class="sd">            tested_by (str): Name of the tester or system for the report footer.</span>
+<span class="sd">            add_traceback (bool): Whether to include full Python tracebacks in the report.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_traceback</span> <span class="o">=</span> <span class="n">add_traceback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report_name</span> <span class="o">=</span> <span class="n">report_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">style</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="n">script</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tested_by</span> <span class="o">=</span> <span class="n">tested_by</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;reports&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">open_in_browser</span> <span class="o">=</span> <span class="n">open_in_browser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+                                                  <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">report_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%y %I-%M-%S&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.html&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+                                         <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">report_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%y %I-%M-%S&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">_log.txt&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">DEFAULT_TITLE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">DEFAULT_DESCRIPTION</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the provided test suite or case.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            test (unittest.TestSuite|unittest.TestCase): The test suite or case to execute.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _TestResult: An object containing the captured test results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">_TestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_traceback</span><span class="p">)</span>
+        <span class="n">test</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_report</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_result</span><span class="p">(</span><span class="n">results_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Groups test results by their parent class for structured reporting.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results_list (list): The list of results from the TestResult object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple]: A list of tuples containing (test_class, results).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ordered_classes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">results_list</span><span class="p">:</span>
+            <span class="n">test_class</span> <span class="o">=</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__class__</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_class</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;&lt;class &#39;unittest.case._SubTest&#39;&gt;&quot;</span><span class="p">:</span>
+                <span class="n">test_class</span> <span class="o">=</span> <span class="n">ordered_classes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">result_map</span><span class="p">:</span>
+                <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">ordered_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_class</span><span class="p">)</span>
+            <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span><span class="p">))</span>
+
+        <span class="n">sorted_results</span> <span class="o">=</span> <span class="p">[(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">])</span> <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">ordered_classes</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">sorted_results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_report_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Collects summary attributes for the report header.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            result (_TestResult): The captured test results.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[tuple]: Key-value pairs of report metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start_time_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)[:</span><span class="mi">19</span><span class="p">]</span>
+        <span class="n">stop_time_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span><span class="p">)[:</span><span class="mi">19</span><span class="p">]</span>
+        <span class="n">elapsed_duration</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+
+        <span class="n">total_tests</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">success_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">error_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">skip_count</span>
+        <span class="n">pass_rate</span> <span class="o">=</span> <span class="s2">&quot;0.00%&quot;</span>
+        <span class="k">if</span> <span class="n">total_tests</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pass_rate</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">success_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_tests</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span>
+
+        <span class="n">status_metrics</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success_count</span><span class="p">,</span>
+            <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">failure_count</span><span class="p">,</span>
+            <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">error_count</span><span class="p">,</span>
+            <span class="s1">&#39;skip&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">skip_count</span><span class="p">,</span>
+            <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">total_tests</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s1">&#39;Start Time&#39;</span><span class="p">,</span> <span class="n">start_time_str</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;End Time&#39;</span><span class="p">,</span> <span class="n">stop_time_str</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Duration&#39;</span><span class="p">,</span> <span class="n">elapsed_duration</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="n">status_metrics</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Pass Rate&#39;</span><span class="p">,</span> <span class="n">pass_rate</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">&#39;Tested By&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tested_by</span><span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates the final HTML report and copies static assets.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            result (_TestResult): The captured test results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">report_attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_report_attributes</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="n">generator_name</span> <span class="o">=</span> <span class="s1">&#39;HTMLTestRunner </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">__version__</span>
+        <span class="n">report_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_report_data</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="n">jinja_env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">)))</span>
+        <span class="n">report_template</span> <span class="o">=</span> <span class="n">jinja_env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;template.html&#39;</span><span class="p">)</span>
+
+        <span class="n">rendered_html</span> <span class="o">=</span> <span class="n">report_template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+            <span class="n">generator</span><span class="o">=</span><span class="n">generator_name</span><span class="p">,</span>
+            <span class="n">report_attrs</span><span class="o">=</span><span class="n">report_attributes</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+            <span class="n">report</span><span class="o">=</span><span class="n">report_data</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span>
+            <span class="n">script</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">script</span><span class="p">,</span>
+            <span class="n">stop_time</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;stylesheet.css&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;stylesheet.css&#39;</span><span class="p">))</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;script.js&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;script.js&#39;</span><span class="p">))</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handler</span><span class="p">:</span>
+            <span class="n">file_handler</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rendered_html</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_in_browser</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">webbrowser</span>
+            <span class="n">absolute_report_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span><span class="p">)</span>
+            <span class="n">webbrowser</span><span class="o">.</span><span class="n">open_new_tab</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;file:///</span><span class="si">{</span><span class="n">absolute_report_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_report_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to structure data for the Jinja2 template.&quot;&quot;&quot;</span>
+        <span class="n">report_class_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sorted_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_result</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">results_list</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">class_index</span><span class="p">,</span> <span class="p">(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">class_results</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sorted_results</span><span class="p">):</span>
+            <span class="n">pass_count</span> <span class="o">=</span> <span class="n">fail_count</span> <span class="o">=</span> <span class="n">error_count</span> <span class="o">=</span> <span class="n">skip_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">class_results</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">pass_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">fail_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">skip_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">test_class</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">class_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">test_class</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">test_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+            <span class="n">doc_string</span> <span class="o">=</span> <span class="n">test_class</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">and</span> <span class="n">test_class</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">class_description</span> <span class="o">=</span> <span class="n">doc_string</span> <span class="ow">and</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">doc_string</span><span class="p">)</span> <span class="ow">or</span> <span class="n">class_name</span>
+
+            <span class="n">test_case_results</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">test_index</span><span class="p">,</span> <span class="p">(</span><span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_results</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_format_test_case_result</span><span class="p">(</span><span class="n">test_case_results</span><span class="p">,</span> <span class="n">class_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+
+            <span class="n">class_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;style&#39;</span><span class="p">:</span> <span class="n">error_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s1">&#39;errorClass&#39;</span> <span class="ow">or</span> <span class="n">fail_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s1">&#39;failClass&#39;</span> <span class="ow">or</span> <span class="s1">&#39;passClass&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="n">class_description</span><span class="p">,</span>
+                <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">pass_count</span> <span class="o">+</span> <span class="n">fail_count</span> <span class="o">+</span> <span class="n">error_count</span> <span class="o">+</span> <span class="n">skip_count</span><span class="p">,</span>
+                <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="n">pass_count</span><span class="p">,</span>
+                <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="n">fail_count</span><span class="p">,</span>
+                <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">error_count</span><span class="p">,</span>
+                <span class="s1">&#39;skip&#39;</span><span class="p">:</span> <span class="n">skip_count</span><span class="p">,</span>
+                <span class="s1">&#39;cid&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;c</span><span class="si">{</span><span class="n">class_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;fun_testcases&#39;</span><span class="p">:</span> <span class="n">test_case_results</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">report_class_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_data</span><span class="p">)</span>
+
+        <span class="n">report_summary</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;class_testcases&#39;</span><span class="p">:</span> <span class="n">report_class_list</span><span class="p">,</span>
+            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">success_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">error_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">skip_count</span><span class="p">),</span>
+            <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">success_count</span><span class="p">),</span>
+            <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">failure_count</span><span class="p">),</span>
+            <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">error_count</span><span class="p">),</span>
+            <span class="s1">&#39;skip&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">skip_count</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">report_summary</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_test_case_result</span><span class="p">(</span><span class="n">test_case_results</span><span class="p">,</span> <span class="n">class_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to format individual test case data.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">id_prefix</span> <span class="o">=</span> <span class="s1">&#39;p&#39;</span>
+        <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">id_prefix</span> <span class="o">=</span> <span class="s1">&#39;f&#39;</span>
+        <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">id_prefix</span> <span class="o">=</span> <span class="s1">&#39;e&#39;</span>
+        <span class="k">elif</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">id_prefix</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">id_prefix</span> <span class="o">=</span> <span class="s1">&#39;u&#39;</span> <span class="c1"># unknown</span>
+
+        <span class="n">test_id</span> <span class="o">=</span> <span class="n">id_prefix</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;t</span><span class="si">{</span><span class="n">class_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">test_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">method_name</span> <span class="o">=</span> <span class="n">test_case</span><span class="o">.</span><span class="n">id</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">doc_string</span> <span class="o">=</span> <span class="n">test_case</span><span class="o">.</span><span class="n">shortDescription</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">test_description</span> <span class="o">=</span> <span class="n">doc_string</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">doc_string</span><span class="p">))</span> <span class="ow">or</span> <span class="n">method_name</span>
+
+        <span class="n">clean_log</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">convert_to_string</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+        <span class="n">clean_error</span> <span class="o">=</span> <span class="n">convert_to_string</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+
+        <span class="n">test_case_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;tid&#39;</span><span class="p">:</span> <span class="n">test_id</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s1">&#39;hiddenRow&#39;</span> <span class="ow">or</span> <span class="s1">&#39;none&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;style&#39;</span><span class="p">:</span> <span class="n">status_code</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="s1">&#39;errorCase&#39;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="s1">&#39;failCase&#39;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="s1">&#39;skipCase&#39;</span> <span class="ow">or</span> <span class="s1">&#39;passCase&#39;</span><span class="p">)),</span>
+            <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="n">test_description</span><span class="p">,</span>
+            <span class="s1">&#39;log&#39;</span><span class="p">:</span> <span class="n">clean_log</span><span class="p">,</span>
+            <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">clean_error</span><span class="p">,</span>
+            <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">TEST_STATUS_MAP</span><span class="p">[</span><span class="n">status_code</span><span class="p">],</span>
+            <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">duration</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">s&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">test_case_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_case_data</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.HTMLTestRunner.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">report_name</span><span class="o">=</span><span class="s1">&#39;report&#39;</span><span class="p">,</span> <span class="n">open_in_browser</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tested_by</span><span class="o">=</span><span class="s1">&#39;Unknown&#39;</span><span class="p">,</span> <span class="n">add_traceback</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initializes the HTMLTestRunner.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>log</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>None</code>
 )
-</code></pre>
-<p>HTMLTestRunner </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>self</code></b> (HTMLTestRunner):  Object of HTMLTestRunner </li>
-<li><b><code>log</code></b> (bool):  If <code>True</code> it logs print buffer to *.txt file with timestamp </li>
-<li><b><code>output</code></b> (str):  Report output dir name </li>
-<li><b><code>verbosity</code></b> (int):  If <code>verbosity &gt; 1</code> it prints brief summary of testcases in console </li>
-<li><b><code>title</code></b> (str):  Title of the Test Report </li>
-<li><b><code>description</code></b> (str):  Description of Test Report </li>
-<li><b><code>style</code></b> (str):  Custom style for report </li>
-<li><b><code>script</code></b> (str):  Custom script for report </li>
-<li><b><code>report_name</code></b> (str):  Starting name of Test report and log file </li>
-<li><b><code>open_in_browser</code></b> (bool):  If <code>True</code> it opens report in browser automatically </li>
-<li><b><code>add_traceback</code></b> (bool): Adds error trace back to report if True </li>
-</ul>
-<p><strong>Returns:</strong>
- Runner object </p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L398"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-generate_report"><kbd>function</kbd> <code>generate_report</code></h3>
-<pre><code class="language-python">generate_report(result)
-</code></pre>
-<p>It generates HTML report by using unittest report @param result:unittest result After generates html report it opens report in browser if open_in_browser is True It adds stylesheet and script files in reports directory </p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L372"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-get_report_attributes"><kbd>function</kbd> <code>get_report_attributes</code></h3>
-<pre><code class="language-python">get_report_attributes(result)
-</code></pre>
-<p>Return report attributes as a list of (name, value). Override this to add custom attributes. </p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L336"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-run"><kbd>function</kbd> <code>run</code></h3>
-<pre><code class="language-python">run(test)
-</code></pre>
-<p>Run the Test Case </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>test</code></b>:  Test Case </li>
-</ul>
-<p><strong>Returns:</strong>
- It returns <code>result</code> </p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L351"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-sort_result"><kbd>function</kbd> <code>sort_result</code></h3>
-<pre><code class="language-python">sort_result(result_list)
-</code></pre>
-<p>It sorts the Testcases to run </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>result_list</code></b> (list):  Results list </li>
-</ul>
-<p><strong>Returns:</strong>
- Returns sorted result list </p>
-<hr />
-<h2 id="class-outputredirector"><kbd>class</kbd> <code>OutputRedirector</code></h2>
-<p>Wrapper to redirect stdout or stderr </p>
-<p><a href="../HTMLTestRunner/runner.py#L84"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-__init___1"><kbd>function</kbd> <code>__init__</code></h3>
-<pre><code class="language-python">__init__(fp)
-</code></pre>
-<p>Wrapper to redirect stdout or stderr </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>fp</code></b> (buffer):  Buffer to store stdout </li>
-</ul>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-flush"><kbd>function</kbd> <code>flush</code></h3>
-<pre><code class="language-python">flush()
-</code></pre>
-<p>It flushes string buffer </p>
-<p><strong>Returns:</strong></p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-write"><kbd>function</kbd> <code>write</code></h3>
-<pre><code class="language-python">write(s)
-</code></pre>
-<p>Write to string buffer with timestamp </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>s</code></b> (str):  String to write to buffer </li>
-</ul>
-<p><strong>Returns:</strong>
-  It returns None </p>
-<hr />
-<p><a href="../HTMLTestRunner/runner.py#L108"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a></p>
-<h3 id="function-writelines"><kbd>function</kbd> <code>writelines</code></h3>
-<pre><code class="language-python">writelines(lines)
-</code></pre>
-<p>It writes number lines to buffer </p>
-<p><strong>Args:</strong></p>
-<ul>
-<li><b><code>lines</code></b> (list):  List of lines to write to buffer </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<hr />
-<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
+              –
+              <div class="doc-md-description">
+                <p>If True, redirects print output to a timestamped log file.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>output</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Directory name where the report and logs will be saved. Defaults to 'reports'.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>verbosity</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>1</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Level of console output (0, 1, or 2).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>title</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The title displayed at the top of the HTML report.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>description</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>A brief description displayed in the report metadata.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>style</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Custom CSS string to inject into the report.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>script</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Custom JavaScript string to inject into the report.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>report_name</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;report&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The prefix for the generated report filename.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>open_in_browser</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Automatically open the generated report in the default web browser.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>tested_by</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;Unknown&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Name of the tester or system for the report footer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>add_traceback</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to include full Python tracebacks in the report.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+             <span class="n">report_name</span><span class="o">=</span><span class="s1">&#39;report&#39;</span><span class="p">,</span> <span class="n">open_in_browser</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tested_by</span><span class="o">=</span><span class="s2">&quot;Unknown&quot;</span><span class="p">,</span> <span class="n">add_traceback</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the HTMLTestRunner.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        log (bool): If True, redirects print output to a timestamped log file.</span>
+<span class="sd">        output (str): Directory name where the report and logs will be saved. Defaults to &#39;reports&#39;.</span>
+<span class="sd">        verbosity (int): Level of console output (0, 1, or 2).</span>
+<span class="sd">        title (str): The title displayed at the top of the HTML report.</span>
+<span class="sd">        description (str): A brief description displayed in the report metadata.</span>
+<span class="sd">        style (str): Custom CSS string to inject into the report.</span>
+<span class="sd">        script (str): Custom JavaScript string to inject into the report.</span>
+<span class="sd">        report_name (str): The prefix for the generated report filename.</span>
+<span class="sd">        open_in_browser (bool): Automatically open the generated report in the default web browser.</span>
+<span class="sd">        tested_by (str): Name of the tester or system for the report footer.</span>
+<span class="sd">        add_traceback (bool): Whether to include full Python tracebacks in the report.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_traceback</span> <span class="o">=</span> <span class="n">add_traceback</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">report_name</span> <span class="o">=</span> <span class="n">report_name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">style</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="n">script</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tested_by</span> <span class="o">=</span> <span class="n">tested_by</span>
+    <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;reports&#39;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">open_in_browser</span> <span class="o">=</span> <span class="n">open_in_browser</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+                                              <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">report_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%y %I-%M-%S&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.html&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span>
+                                     <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">report_name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%y %I-%M-%S&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">_log.txt&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">DEFAULT_TITLE</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+    <span class="k">if</span> <span class="n">description</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">DEFAULT_DESCRIPTION</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.HTMLTestRunner.generate_report" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_report</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generates the final HTML report and copies static assets.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>result</code></b>
+                  (<code><span title="HTMLTestRunner.runner._TestResult">_TestResult</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The captured test results.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates the final HTML report and copies static assets.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        result (_TestResult): The captured test results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">report_attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_report_attributes</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="n">generator_name</span> <span class="o">=</span> <span class="s1">&#39;HTMLTestRunner </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">__version__</span>
+    <span class="n">report_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_report_data</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="n">jinja_env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">)))</span>
+    <span class="n">report_template</span> <span class="o">=</span> <span class="n">jinja_env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;template.html&#39;</span><span class="p">)</span>
+
+    <span class="n">rendered_html</span> <span class="o">=</span> <span class="n">report_template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+        <span class="n">generator</span><span class="o">=</span><span class="n">generator_name</span><span class="p">,</span>
+        <span class="n">report_attrs</span><span class="o">=</span><span class="n">report_attributes</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+        <span class="n">report</span><span class="o">=</span><span class="n">report_data</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">script</span><span class="p">,</span>
+        <span class="n">stop_time</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;stylesheet.css&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;stylesheet.css&#39;</span><span class="p">))</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;script.js&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;script.js&#39;</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_handler</span><span class="p">:</span>
+        <span class="n">file_handler</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rendered_html</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_in_browser</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">webbrowser</span>
+        <span class="n">absolute_report_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">html_report_file_name</span><span class="p">)</span>
+        <span class="n">webbrowser</span><span class="o">.</span><span class="n">open_new_tab</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;file:///</span><span class="si">{</span><span class="n">absolute_report_path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.HTMLTestRunner.get_report_attributes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_report_attributes</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Collects summary attributes for the report header.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>result</code></b>
+                  (<code><span title="HTMLTestRunner.runner._TestResult">_TestResult</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The captured test results.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              –
+              <div class="doc-md-description">
+                <p>list[tuple]: Key-value pairs of report metadata.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_report_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collects summary attributes for the report header.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        result (_TestResult): The captured test results.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[tuple]: Key-value pairs of report metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start_time_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)[:</span><span class="mi">19</span><span class="p">]</span>
+    <span class="n">stop_time_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span><span class="p">)[:</span><span class="mi">19</span><span class="p">]</span>
+    <span class="n">elapsed_duration</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+
+    <span class="n">total_tests</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">success_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">error_count</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">skip_count</span>
+    <span class="n">pass_rate</span> <span class="o">=</span> <span class="s2">&quot;0.00%&quot;</span>
+    <span class="k">if</span> <span class="n">total_tests</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pass_rate</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">success_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_tests</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span>
+
+    <span class="n">status_metrics</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;pass&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success_count</span><span class="p">,</span>
+        <span class="s1">&#39;fail&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">failure_count</span><span class="p">,</span>
+        <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">error_count</span><span class="p">,</span>
+        <span class="s1">&#39;skip&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">skip_count</span><span class="p">,</span>
+        <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">total_tests</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;Start Time&#39;</span><span class="p">,</span> <span class="n">start_time_str</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;End Time&#39;</span><span class="p">,</span> <span class="n">stop_time_str</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Duration&#39;</span><span class="p">,</span> <span class="n">elapsed_duration</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="n">status_metrics</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Pass Rate&#39;</span><span class="p">,</span> <span class="n">pass_rate</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Tested By&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tested_by</span><span class="p">)</span>
+    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.HTMLTestRunner.run" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run</span><span class="p">(</span><span class="n">test</span><span class="p">)</span></code>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs the provided test suite or case.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>test</code></b>
+                  (<code><span title="unittest.TestSuite">TestSuite</span> | <span title="unittest.TestCase">TestCase</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The test suite or case to execute.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>_TestResult</code></b>              –
+              <div class="doc-md-description">
+                <p>An object containing the captured test results.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs the provided test suite or case.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        test (unittest.TestSuite|unittest.TestCase): The test suite or case to execute.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _TestResult: An object containing the captured test results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">_TestResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_traceback</span><span class="p">)</span>
+    <span class="n">test</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">stop_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">generate_report</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="HTMLTestRunner.runner.HTMLTestRunner.sort_result" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sort_result</span><span class="p">(</span><span class="n">results_list</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Groups test results by their parent class for structured reporting.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>results_list</code></b>
+                  (<code><span title="list">list</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The list of results from the TestResult object.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              –
+              <div class="doc-md-description">
+                <p>list[tuple]: A list of tuples containing (test_class, results).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sort_result</span><span class="p">(</span><span class="n">results_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Groups test results by their parent class for structured reporting.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        results_list (list): The list of results from the TestResult object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[tuple]: A list of tuples containing (test_class, results).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ordered_classes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">results_list</span><span class="p">:</span>
+        <span class="n">test_class</span> <span class="o">=</span> <span class="n">test_case</span><span class="o">.</span><span class="vm">__class__</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_class</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;&lt;class &#39;unittest.case._SubTest&#39;&gt;&quot;</span><span class="p">:</span>
+            <span class="n">test_class</span> <span class="o">=</span> <span class="n">ordered_classes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">result_map</span><span class="p">:</span>
+            <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">ordered_classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_class</span><span class="p">)</span>
+        <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">status_code</span><span class="p">,</span> <span class="n">test_case</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">error_message</span><span class="p">,</span> <span class="n">duration</span><span class="p">))</span>
+
+    <span class="n">sorted_results</span> <span class="o">=</span> <span class="p">[(</span><span class="n">test_class</span><span class="p">,</span> <span class="n">result_map</span><span class="p">[</span><span class="n">test_class</span><span class="p">])</span> <span class="k">for</span> <span class="n">test_class</span> <span class="ow">in</span> <span class="n">ordered_classes</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">sorted_results</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="HTMLTestRunner.runner.convert_to_string" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">convert_to_string</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Safely converts input data (string or bytes) into a Unicode string.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>input_data</code></b>
+                  (<code><span title="str">str</span> | <span title="bytes">bytes</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The data to be converted.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>              –
+              <div class="doc-md-description">
+                <p>The decoded Unicode string.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="Exception">Exception</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If the input data is not string or bytes.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>HTMLTestRunner\runner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">convert_to_string</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Safely converts input data (string or bytes) into a Unicode string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_data (str|bytes): The data to be converted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The decoded Unicode string.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        Exception: If the input data is not string or bytes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">input_data</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">input_data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">input_data</span><span class="si">}</span><span class="s2"> is not string or bytes&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
               
             </div>
           </div><footer>
@@ -281,7 +1911,7 @@
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-      <p>© 2021-2030   Ravikirana B</p>
+      <p>© 2021-2030 Ravikirana B</p>
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -309,14 +1939,15 @@
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
