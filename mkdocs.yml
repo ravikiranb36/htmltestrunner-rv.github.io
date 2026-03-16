@@ -2,11 +2,23 @@ site_name: HTMLTestRunner-rv
 nav:
   - Home: index.md
   - About: about.md
-  - HTMLTestRunner: api-documentation.md
+  - API Reference: api-documentation.md
   - Tutorial: tutorial.md
-theme: readthedocs
+
+theme:
+  name: readthedocs
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append(".")
+
 repo_url: https://github.com/ravikiranb36/HTMLTestRunner.io.git
 site_author: Ravikirana B
-site_description: HTMLTestRunner-rv
+site_description: Professional HTML Test Reporting for Python unittest
 use_directory_urls: true
-copyright: © 2021-2030   Ravikirana B
+copyright: © 2021-2030 Ravikirana B

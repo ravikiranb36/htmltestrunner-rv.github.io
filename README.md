@@ -1,68 +1,112 @@
-# HTMLTestRunner
-```text
-HTMLTestRunner for python3 
+# HTMLTestRunner-rv
 
-A TestRunner for use with the Python unit testing framework. 
-It generates a HTML report to show the result at a glance.
-It logs stdout to *.txt file with timestamp
-Easy to find bugs
-```
-#[<span style="color: grey;"> Click here for HTMLTestRunner-rv documentation</span>](https://ravikiranb36.github.io/htmltestrunner-rv.github.io/)
+[![PyPI version](https://badge.fury.io/py/HTMLTestRunner-rv.svg)](https://badge.fury.io/py/HTMLTestRunner-rv)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Versions](https://img.shields.io/badge/python-3.7+-blue.svg)](https://pypi.org/project/HTMLTestRunner-rv/)
 
-#Installation:
+**HTMLTestRunner-rv** is a professional, feature-rich HTML test report generator for the Python `unittest` framework. It provides a modern dashboard-style interface with detailed metrics, per-test timing, and interactive filtering to make debugging seamless.
+
+[**Check the Live Documentation**](https://ravikiranb36.github.io/htmltestrunner-rv.github.io/)
+
+---
+
+## 🌟 Key Features
+
+- **📊 Modern Dashboard:** A card-based overview of Pass, Fail, Error, and Skip rates.
+- **🕒 Per-Test Duration:** Tracks the exact execution time for *every* test case.
+- **🔍 Interactive Filtering:** Toggle views for Summary, Failed, Passed, or Errored tests with one click.
+- **🖥️ Dark Terminal Theme:** Execution logs (stdout/stderr) are displayed in a professional dark terminal window.
+- **🚀 Instant Feedback:** Optionally opens the generated report in your default browser automatically.
+- **📁 Smart Logging:** Captures all print statements and errors into timestamped `.txt` files.
+- **✅ Full unittest Support:** Supports `subTest`, `skip`, and all standard `unittest` features.
+
+---
+
+## 🛠️ Installation
+
+Install the latest version of `HTMLTestRunner-rv` using pip:
+
 ```bash
 pip install HTMLTestRunner-rv
 ```
 
-# Creating suite
-```python
-my_test_suite = unittest.TestSuite()
-```
+---
 
-# output to a file
-```python
-runner = HTMLTestRunner(
-title='My unit test', open_in_browser=True)
-```
+## 🚀 Quick Start
 
-# run the test
-```python
-runner.run(my_test_suite)
-```
+Creating a professional test report is as simple as replacing your standard `unittest.TextTestRunner` with `HTMLTestRunner`.
 
-#Example code:
+### Simple Example
+
 ```python
 import unittest
-
 from HTMLTestRunner.runner import HTMLTestRunner
-from tests.test_1 import TestCase1
-from tests.test_2 import TestCase2
 
-test1 = unittest.TestLoader().loadTestsFromTestCase(TestCase1)
-test2 = unittest.TestLoader().loadTestsFromTestCase(TestCase2)
-suite = unittest.TestSuite([test1, test2])
-runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description="HTMLTestReport", tested_by="Ravikirana B",
-                        add_traceback=False)
+class MyTests(unittest.TestCase):
+    def test_success(self):
+        """A simple successful test"""
+        print("Executing success test...")
+        self.assertEqual(1, 1)
 
-runner.run(suite)
+    def test_error(self):
+        """A test that raises an error"""
+        print("Executing error test...")
+        return 1 / 0
+
+if __name__ == '__main__':
+    # Load your tests
+    suite = unittest.TestLoader().loadTestsFromTestCase(MyTests)
+    
+    # Initialize the runner
+    runner = HTMLTestRunner(
+        title='Test Report Review',
+        description='Daily regression test results',
+        tested_by='Your Name',
+        open_in_browser=True
+    )
+    
+    # Run the tests
+    runner.run(suite)
 ```
-## Now you can pass external css styling and javascript for report
-### Example:
-```python
-style = """
-    .heading {
-    margin-top: 0ex;
-    margin-bottom: 1ex;
-    border-style:ridge;
-    color:white;
-    background-color:#999900;
-    font-weight:bold;
-    }
-"""
-script = """
-    Your script
-"""
-runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description="HTMLTestReport", script=script, style=style)
-```
+
+---
+
+## ⚙️ Configuration Parameters
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `output` | `str` | `'reports'` | Directory where the HTML report and logs will be saved. |
+| `report_name` | `str` | `'report'` | The prefix for the generated report file name. |
+| `title` | `str` | `'Test Report Review'` | The title displayed at the top of the HTML report. |
+| `description` | `str` | `None` | A brief description of the test suite. |
+| `verbosity` | `int` | `1` | Controls the console output detail level. |
+| `log` | `bool` | `False` | If `True`, captures all print statements to a timestamped `.txt` file. |
+| `open_in_browser` | `bool` | `False` | Automatically opens the report in your web browser after completion. |
+| `add_traceback` | `bool` | `True` | Includes full error tracebacks in the report. |
+| `tested_by` | `str` | `'Unknown'` | Name of the person or system that ran the tests. |
+| `style` | `str` | `""` | Custom CSS string to inject into the report. |
+| `script` | `str` | `""` | Custom JavaScript string to inject into the report. |
+
+---
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+---
+
+## 🤝 Sponsorship & Funding
+
+This project is proudly funded and supported by **[RV Anveshana](https://rvanveshana.com/)**. Their commitment to open-source innovation helps maintain and evolve this framework for the developer community.
+
+---
+
+## 💰 Support the Project
+
+If you find this tool useful, please consider supporting its development. Your contribution helps us maintain and improve this framework.
+
+**[👉 Click here for donation](https://razorpay.me/@ravikiranabyadarahalli)**
+
+---
+
+**Developed by Ravikirana B** - [ravikiranb36@gmail.com](mailto:ravikiranb36@gmail.com)

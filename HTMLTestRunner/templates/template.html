@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
     <meta name="generator" content="{{ generator }}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
     <script src="script.js"></script>
     <style>
@@ -14,97 +15,151 @@
     </script>
 </head>
 <body>
-<div class='heading'>
-    <h1 style="margin-left:1ex;">{{ title }}</h1>
-    {% for attribute in report_attrs %}
-    <p class='attribute'><strong>{{ attribute[0] }} : </strong> {{attribute[1]}}</p>
-    {% endfor %}
-</div>
-<div>
-    <p id='show_detail_line'><b>Show</b>
-        <button><a href='javascript:showCase(0)' style="color:#660066;">Summary</a></button>
-        <button><a href='javascript:showCase(1)' style="color:#660066;">Failed</a></button>
-        <button><a href='javascript:showCase(2)' style="color:#660066;">Passed</a></button>
-        <button><a href='javascript:showCase(4)' style="color:#660066;">Skipped</a></button>
-        <button><a href='javascript:showCase(3)' style="color:#660066;">All</a></button>
-    </p>
-    <table id='result_table'>
-        <colgroup>
-            <col align='left'/>
-            <col align='right'/>
-            <col align='right'/>
-            <col align='right'/>
-            <col align='right'/>
-            <col align='right'/>
-            <col align='right'/>
-        </colgroup>
-        <tr id='header_row'>
-            <td>Test Group/Test case</td>
-            <td>Count</td>
-            <td>Pass</td>
-            <td>Fail</td>
-            <td>Error</td>
-            <td>Skip</td>
-            <td>View</td>
-        </tr>
-        {% for cls in report['class_testcases'] %}
-        <tr class='{{ cls["style"]}}' style="font-weight:bold;color:white;">
-            <td><a href="javascript:showClassDetail('{{ cls['cid']}}','{{ cls['count']}}')">{{ cls['desc'] }}</a></td>
-            <td>{{ cls['count'] }}</td>
-            <td>{{ cls['pass'] }}</td>
-            <td>{{ cls['fail'] }}</td>
-            <td>{{ cls['error'] }}</td>
-            <td>{{ cls['skip'] }}</td>
+<div class='report-header'>
+    <h1>{{ title }}</h1>
+    <table class="metadata-table">
+        {% for attribute in report_attrs %}
+        <tr>
+            <th>{{ attribute[0] }}</th>
             <td>
-                <button><a href="javascript:showClassDetail('{{ cls['cid']}}','{{ cls['count'] }}')"
-                           style="color:#660066;">Detail</a></button>
+                {% if attribute[0] == 'Status' %}
+                    <div class="status-summary-badges">
+                        {% if attribute[1]['pass'] %}<span class="badge-pass">Passed: {{ attribute[1]['pass'] }}</span>{% endif %}
+                        {% if attribute[1]['fail'] %}<span class="badge-fail">Failed: {{ attribute[1]['fail'] }}</span>{% endif %}
+                        {% if attribute[1]['error'] %}<span class="badge-error">Errors: {{ attribute[1]['error'] }}</span>{% endif %}
+                        {% if attribute[1]['skip'] %}<span class="badge-skip">Skipped: {{ attribute[1]['skip'] }}</span>{% endif %}
+                        {% if not attribute[1]['total'] %}None{% endif %}
+                    </div>
+                {% else %}
+                    {{ attribute[1] | safe }}
+                {% endif %}
             </td>
         </tr>
-            {% for testcase in cls['fun_testcases'] %}
-            <tr id="{{testcase['tid']}}" class='{{ testcase["class"] }}'>
-                <td class='{{ testcase["style"] }}'>
-                    <div class='testcase'>
-                        <a class="popup_link" onfocus='this.blur();'
-                           href="javascript:showTestDetail('div_{{testcase['tid']}}')">{{testcase['desc']}}</a>
-                    </div>
-                </td>
-                <td colspan='6' align='center'>
-                    <div>
-                        <!--css div popup start-->
-                        <button>
-                            <a class="popup_link" onfocus='this.blur();'
-                               href="javascript:showTestDetail('div_{{testcase['tid']}}')" style="color:#660066;">
-                                {{ testcase['status'] }}
-                            </a></button>
-                        <div id='div_{{ testcase["tid"] }}' class="popup_window">
-                            <div style='text-align: right; color:red;cursor:pointer'>
-                                <a onfocus='this.blur();'
-                                   onclick="document.getElementById('div_{{testcase['tid']}}').style.display = 'none'; "
-                                   style="color:red;">
-                                    [x]</a>
-                            </div>
-                            <pre>{{ testcase['log'] }}</pre>
-                            <pre style="color: red;">{{ testcase['error'] }}</pre>
-                        </div>
-                        <!--css div popup end-->
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
         {% endfor %}
-
-        <tr id='total_row'>
-            <td>Total</td>
-            <td>{{report['count']}}</td>
-            <td>{{report['pass']}}</td>
-            <td>{{report['fail']}}</td>
-            <td>{{report['error']}}</td>
-            <td>{{report['skip']}}</td>
-            <td>&nbsp;</td>
-        </tr>
     </table>
 </div>
-<br><br>
-<div id='ending'><b>Time Elapsed: </b>{{ stop_time }}</div>
+
+<div class="dashboard-cards">
+    <div class="summary-card total-tests">
+        <span class="card-value">{{ report['count'] }}</span>
+        <span class="card-label">Total Tests</span>
+    </div>
+    <div class="summary-card passed-tests">
+        <span class="card-value">{{ report['pass'] }}</span>
+        <span class="card-label">Passed</span>
+    </div>
+    <div class="summary-card failed-tests">
+        <span class="card-value">{{ report['fail'] }}</span>
+        <span class="card-label">Failed</span>
+    </div>
+    <div class="summary-card error-tests">
+        <span class="card-value">{{ report['error'] }}</span>
+        <span class="card-label">Errors</span>
+    </div>
+    <div class="summary-card skipped-tests">
+        <span class="card-value">{{ report['skip'] }}</span>
+        <span class="card-label">Skipped</span>
+    </div>
+</div>
+
+<div class="filter-section">
+    <strong>Display Results:</strong>
+    <div class="filter-button-group">
+        <button id="filter-all" onclick="filterTests('all')" class="btn-filter active">Summary</button>
+        <button id="filter-fail" onclick="filterTests('fail')" class="btn-filter">Failed</button>
+        <button id="filter-pass" onclick="filterTests('pass')" class="btn-filter">Passed</button>
+        <button id="filter-error" onclick="filterTests('error')" class="btn-filter">Error</button>
+        <button id="filter-skip" onclick="filterTests('skip')" class="btn-filter">Skipped</button>
+    </div>
+</div>
+
+<table id='test-result-table' class="test-report-table">
+    <thead>
+        <tr class='table-header-row'>
+            <th>Test Group / Test Case</th>
+            <th>Count / Duration</th>
+            <th>Pass</th>
+            <th>Fail</th>
+            <th>Error</th>
+            <th>Skip</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for test_class in report['class_testcases'] %}
+        <tr class='test-class-row {{ test_class["style"]}}' data-class-id="{{ test_class['cid'] }}">
+            <td class="class-description">
+                <a href="javascript:toggleTestClassGroup('{{ test_class['cid']}}')" class="class-link">{{ test_class['desc'] }}</a>
+            </td>
+            <td class="class-metrics">{{ test_class['count'] }}</td>
+            <td class="class-metrics">{{ test_class['pass'] }}</td>
+            <td class="class-metrics">{{ test_class['fail'] }}</td>
+            <td class="class-metrics">{{ test_class['error'] }}</td>
+            <td class="class-metrics">{{ test_class['skip'] }}</td>
+            <td class="class-action">
+                <button onclick="toggleTestClassGroup('{{ test_class['cid']}}')" class="btn-detail">Detail</button>
+            </td>
+        </tr>
+        {% for test_case in test_class['fun_testcases'] %}
+        <tr id="{{ test_case['tid'] }}" 
+            class='test-case-row {{ test_case["class"] }}' 
+            data-parent-class="{{ test_class['cid'] }}" 
+            data-status="{{ test_case['status'] | lower }}">
+            
+            <td class='test-description-cell {{ test_case["style"] }}'>
+                <div class='test-case-name'>
+                    <a class="test-detail-link" href="javascript:toggleTestLog('log-container-{{ test_case['tid'] }}')">
+                        {{ test_case['desc'] }}
+                    </a>
+                </div>
+            </td>
+            <td class="test-duration-cell">{{ test_case['duration'] }}</td>
+            <td colspan='5' class="test-status-cell">
+                <div class="status-action-wrapper">
+                    <button class="status-btn btn-{{ test_case['status'] | lower }}" 
+                            onclick="toggleTestLog('log-container-{{ test_case['tid'] }}')">
+                        {{ test_case['status'] }}
+                    </button>
+                </div>
+                
+                <div id='log-container-{{ test_case["tid"] }}' class="log-window" style="display: none;">
+                    <div class="log-window-header">
+                        <span class="log-title">Execution Log</span>
+                        <a onclick="document.getElementById('log-container-{{ test_case['tid'] }}').style.display = 'none'; " class="log-close-btn">[ CLOSE ]</a>
+                    </div>
+                    <div class="log-content">
+                        <pre class="stdout-log">{{ test_case['log'] }}</pre>
+                        {% if test_case['error'] %}
+                        <pre class="error-log">{{ test_case['error'] }}</pre>
+                        {% endif %}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr class='table-summary-row'>
+            <td>Total Summary</td>
+            <td>{{ report['count'] }}</td>
+            <td>{{ report['pass'] }}</td>
+            <td>{{ report['fail'] }}</td>
+            <td>{{ report['error'] }}</td>
+            <td>{{ report['skip'] }}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class='report-footer'>
+    <div class="footer-container">
+        <p class="execution-time"><strong>Total Execution Time:</strong> <span>{{ stop_time }}</span></p>
+        <div class="brand-info">
+            <p>Generated by <strong class="brand-name">HTMLTestRunner-rv</strong> v1.1.3</p>
+            <p class="copyright">&copy; 2021-2030 Ravikirana B | Professional Test Reporting</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

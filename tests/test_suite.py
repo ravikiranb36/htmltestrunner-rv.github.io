@@ -1,16 +1,30 @@
 import unittest
-
 from HTMLTestRunner.runner import HTMLTestRunner
 from tests.test_1 import TestCase1
 from tests.test_2 import TestCase2
 from tests.test_skip import TestSkipped
+from tests.test_subtest import TestSubTest
+from tests.test_error import TestError
 
-test1 = unittest.TestLoader().loadTestsFromTestCase(TestCase1)
-test2 = unittest.TestLoader().loadTestsFromTestCase(TestCase2)
-test3 = unittest.TestLoader().loadTestsFromTestCase(TestSkipped)
-suite = unittest.TestSuite([test1, test2, test3])
-runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description="HTMLTestReport", tested_by="Ravikirana B",
-                        add_traceback=False)
+def suite():
+    loader = unittest.TestLoader()
+    suite = unittest.TestSuite()
+    suite.addTest(loader.loadTestsFromTestCase(TestCase1))
+    suite.addTest(loader.loadTestsFromTestCase(TestCase2))
+    suite.addTest(loader.loadTestsFromTestCase(TestSkipped))
+    suite.addTest(loader.loadTestsFromTestCase(TestSubTest))
+    suite.addTest(loader.loadTestsFromTestCase(TestError))
+    return suite
 
-runner.run(suite)
+if __name__ == '__main__':
+    runner = HTMLTestRunner(
+        log=True, 
+        verbosity=2, 
+        output='report', 
+        title='Test Report Review',
+        report_name='report',
+        open_in_browser=True,
+        description="Testing Skip and SubTest features", 
+        tested_by="Ravikirana B"
+    )
+    runner.run(suite())

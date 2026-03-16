@@ -1,70 +1,37 @@
-# HTMLTestRunner
-```text
-HTMLTestRunner for python3 
+# About HTMLTestRunner-rv
 
-A TestRunner for use with the Python unit testing framework. 
-It generates a HTML report to show the result at a glance.
-It logs stdout to *.txt file with timestamp
-Easy to find bugs
-```
-#[<span style="color: grey;"> Click here for HTMLTestRunner-rv documentation</span>](https://ravikiranb36.github.io/htmltestrunner-rv.github.io/)
+**HTMLTestRunner-rv** is an enhanced, feature-rich version of the original `HTMLTestRunner` for Python's `unittest` framework. This project focuses on delivering professional-grade, interactive HTML reports that are aesthetically pleasing and highly informative.
 
-#Installation:
-```bash
-pip install HTMLTestRunner-rv
-```
+## Why HTMLTestRunner-rv?
 
-# Creating suite
-```python
-my_test_suite = unittest.TestSuite()
-```
+While the original runner was groundbreaking, modern software development requires more detailed insights and better visualizations. This version addresses several key areas:
 
-# output to a file
-```python
-runner = HTMLTestRunner(
-title='My unit test', open_in_browser=True)
-```
+### 1. Modern Presentation
+We've replaced outdated tables with a sleek, card-based dashboard that highlights the most critical metrics immediately. The report uses a professional color palette to distinguish between different test statuses at a glance.
 
-# run the test
-```python
-runner.run(my_test_suite)
-```
+### 2. Time-Aware Reporting
+Unlike older versions, **HTMLTestRunner-rv** tracks:
+- **Start Time** of the entire suite.
+- **End Time** of the entire suite.
+- **Duration** for *every single* test case, helping you identify performance bottlenecks quickly.
 
-#Example code:
-```python
-import unittest
-from test_print_all_details import TestCasePrintAllDetails
-from test_by_id import TestCaseDetailsById
-from test_details_by_name import TestCaseDetailsByNmae
-from HTMLTestRunner import HTMLTestRunner
+### 3. Smart Filtering
+The report includes built-in interactive filters that allow you to:
+- See a high-level **Summary**.
+- Quickly isolate **Failed** or **Errored** tests.
+- View **Skipped** tests to ensure coverage.
+- Toggle visibility for an entire class of tests with a single click.
 
-def test_suite():
-    test1 = unittest.TestLoader().loadTestsFromTestCase(TestCasePrintAllDetails)
-    test2 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsById)
-    test3 = unittest.TestLoader().loadTestsFromTestCase(TestCaseDetailsByNmae)
-    suite = unittest.TestSuite([test1,test2,test3])
-    runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                            open_in_browser=True, description="HTMLTestReport")
-    runner.run(suite)
-if __name__ == '__main__':
-test_suite()
-```
-## Now you can pass external css styling and javascript for report
-### Example:
-```python
-style = """
-    .heading {
-    margin-top: 0ex;
-    margin-bottom: 1ex;
-    border-style:ridge;
-    color:white;
-    background-color:#999900;
-    font-weight:bold;
-    }
-"""
-script = """
-    Your script
-"""
-runner = HTMLTestRunner(log=True, verbosity=2, output='report', title='Test report', report_name='report',
-                        open_in_browser=True, description="HTMLTestReport", script=script, style=style)
-```
+### 4. Robust Execution Logs
+Execution logs (stdout/stderr) are presented in a dark-themed terminal window, making them easier to read. The runner also ensures proper handling of `bytes` decoding and removes any problematic characters that could break the report.
+
+## Technology Stack
+- **Backend:** Python 3.7+ (supports up to Python 3.13)
+- **Templating:** Jinja2 for clean separation of logic and presentation.
+- **Frontend:** Modern CSS Grid/Flexbox and lightweight Vanilla JavaScript.
+
+## Compatibility
+Fully compatible with all standard `unittest` features, including:
+- `unittest.skip`, `unittest.skipIf`, `unittest.skipUnless`
+- `subTest` (Sub-test results are grouped naturally under their parent test)
+- All custom `TestCase` classes.
