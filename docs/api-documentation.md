@@ -11,8 +11,7 @@ The main runner module responsible for test execution and report generation.
       show_root_heading: true
       show_source: true
       heading_level: 3
-      selection:
-        members:
-          - convert_to_string
-          - OutputRedirector
-          - HTMLTestRunner
+      members:
+        - convert_to_string
+        - OutputRedirector
+        - HTMLTestRunner
